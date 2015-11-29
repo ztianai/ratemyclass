@@ -36,6 +36,11 @@ angular.module('rateMyClass', ['ui.router','firebase'])
       templateUrl: "partials/review.html",
       controller:'reviewCtrl'
     })
+    .state('help', {
+      url: "/help",
+      templateUrl: "partials/help.html",
+      controller:'helpCtrl'
+    })
   $urlRouterProvider.otherwise("/");
 
 })
@@ -75,6 +80,11 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 }])
 
 .controller('reviewCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    console.log("home controller!");
+}])
+
+.controller('helpCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     console.log("home controller!");
 }])
