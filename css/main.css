@@ -1,3 +1,11 @@
+/* Imports Bootstrap functions and Font Awesome functions */
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
+@import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
+
+/* Imports Google Fonts: Raleway and Lato */
+@import url('https://fonts.googleapis.com/css?family=Raleway:400,300');
+@import url('https://fonts.googleapis.com/css?family=Lato:400,300italic,300');
+
 #userAuth {
     height: 25px;
     width: 25px;
@@ -17,3 +25,76 @@
     vertical-align: middle;
 }
 
+<<<<<<< HEAD
+=======
+/* Header */
+#head {
+    margin-left: auto;
+    margin-right: auto;
+    padding-top: 3.5em;
+    width: 50%;
+}
+
+#welcome {
+    font-size: 15pt;
+    font-weight: bold;
+}
+
+#searchForm, #navAuth {
+    float: right;
+}
+
+#partialHead, h3 {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+/* Navigation */
+nav {
+    background-color: rgba(24, 28, 34, 0.8);
+    font-size: 15px;
+    font-family: Lato, 'Helvetica Neue', Helvetica, sans-serif;
+    font-variant: small-caps;
+    padding-top: 0.5em;
+    position: fixed;
+    width: 100%;
+}
+
+ul {
+    text-align: center;
+    list-style: none;
+}
+
+li {
+    color: white;
+    display: inline;
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+li:hover {
+    cursor: pointer;
+}
+
+/* Footer */
+footer ul {
+    text-align: left;
+    width: 50%
+}
+
+footer li {
+    color: black;
+}
+
+/* Styles */
+
+#homeHR {
+    width: 70%;
+}
+
+.text {
+    margin-left: auto;
+    margin-right: auto;
+    width: 70%;
+}
