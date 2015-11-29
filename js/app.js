@@ -46,12 +46,13 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 })
 
 .controller('homeCtrl', ['$scope', 'userAuthFactory', function($scope, $userAuthFactory) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/classList");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
-    console.log("home controller!");
+       var ref = new Firebase("https://ratemyclass.firebaseio.com/classList");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
 
-    $scope.clicked = function() {
-      $userAuthFactory.clicked();
-    }
+
+//    $scope.clicked = function() {
+//      $userAuthFactory.clicked();
+//    }
+
 
     //THIS IS HOW YOU MAKE A NEW REVIEW/CLASS/WHATEVER
     // ref.push({class:"blah", "review":5});
@@ -79,23 +80,53 @@ angular.module('rateMyClass', ['ui.router','firebase'])
     console.log("home controller!");
 }])
 
-.controller('reviewCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+.controller('reviewCtrl', ['$scope', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
+    /* define reference to your firebase app */
+    var ref = new Firebase("https://probech1.firebaseio.com/");
     console.log("home controller!");
-}])
 
-.controller('helpCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    console.log("home controller!");
-}])
+      	/* define reference to the "reviews" value in the app */
+      	var reviewsRef = ref.child("reviews");
+
+      	/* define reference to the "users" value in the app */
+      	var usersRef = ref.child("valueName");
+
+      	/* create a $firebaseArray for the chirps reference and add to scope */
+      	$scope.reviews = $firebaseArray(reviewsRef);
+
+      	/* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
+         	$scope.users = $firebaseObject(usersRef);
+
+      	var Auth = $firebaseAuth(ref);
+
+      	$scope.newUser = {};
 
 
-.factory('userAuthFactory', function() {
-  var obj = {};
+      	/* Write an accessible (on scope) chirp() function to save a tweet */
+      	$scope.review = function() {
+      		$scope.reviews.$add({
+      			text: $scope.newReview,
+      			userId: -1,
+      			likes: 0,
+      			time:Firebase.ServerValue.TIMESTAMP
+      		})
+      		.then(function(){
+      			$scope.newReview = '';
+      		})
+      	}
+  }])
 
-  obj.clicked = function() {
-    console.log("clicked!");
-  }
+  .controller('helpCtrl', ['$scope', function($scope) {
+      var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+      console.log("home controller!");
+  }])
 
-  return obj;
-})
+  .factory('userAuthFactory', function() {
+    var obj = {};
+
+    obj.clicked = function() {
+      console.log("clicked!");
+    }
+
+    return obj;
+  })
