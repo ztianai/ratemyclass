@@ -5,30 +5,36 @@
 
 
 <!--CLASS DESCRIPTION-->
+<div class="pageWrap">
 
+    <!--SEARCH-->
+    <div class="searchBar pull-right">
+        <input type="text" ng-model="search"/>
+        <div ng-repeat="review in reviews | filter:search "> {{review.time}}</div>
 
-<!--REVIEW-->
-<div>
-    <h1>Review</h1>
-    <!-- Review form -->
+        </div>
+    </div>
 
-    <form name="reviewForm" id="review-input">
+    </div>
+    </ul>
 
+    <!--REVIEW-->
+    <div class="review">
+        <h1>Review</h1>
+        <!-- Review form -->
+        <form name="reviewForm" id="review-input">
         <textarea placeholder="Enter your review..." name="text" class="form-control" ng-model="newReview" required
                   ng-maxlength="500"></textarea>
+            <p class="help-block" ng-show="reviewForm.text.$error.maxlength">500 character limit!</p>
+            <div class="form-group send-review">
+                <button type="submit" class="btn btn-primary" ng-click="review()" ng-disabled="reviewForm.$invalid">
+                    <i class="fa fa-pencil-square-o"></i> Share
+                </button>
+            </div>
+        </form>
+    </div>
 
-        <p class="help-block" ng-show="reviewForm.text.$error.maxlength">500 character limit!</p>
-
-        <div class="form-group send-review">
-            <button type="submit" class="btn btn-primary" ng-click="review()" ng-disabled="reviewForm.$invalid">
-                <i class="fa fa-pencil-square-o"></i> Share
-            </button>
-        </div>
-    </form>
-</div>
-
-<!-- Show everyone's reviews -->
-<div>
+    <!-- Show everyone's reviews -->
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
     <div class="review-box" ng-repeat="review in reviews | orderBy:'-time'">
@@ -38,17 +44,11 @@
 
         <!-- Use an expression to show the text of the tweet -->
         <div class="review">{{review.text}}</div>
-
         <div class="likes">
             <i ng-click="like(review)" class="fa fa-heart"></i>
-
             <!-- Use an expression to show the number of likes -->
             <span></span>
         </div>
     </div>
-</div> <!-- end shown results -->
-
-
-
-
-
+<!-- end shown results -->
+</div>

@@ -102,6 +102,7 @@ angular.module('rateMyClass', ['ui.router','firebase'])
       	$scope.newUser = {};
 
 
+
       	/* Write an accessible (on scope) chirp() function to save a tweet */
       	$scope.review = function() {
       		$scope.reviews.$add({
@@ -115,6 +116,7 @@ angular.module('rateMyClass', ['ui.router','firebase'])
       		})
       	}
   }])
+
 
   .controller('helpCtrl', ['$scope', function($scope) {
       var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -130,3 +132,4 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 
     return obj;
   })
+
