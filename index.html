@@ -31,22 +31,37 @@
 				</ul>
 			</nav>
 			<div id="head">
+		<div id="wrapper">
+			<header>
+				<nav>
+					<ul>
+						<li ui-sref="home">home</li>
+						<li ui-sref="search">search</li>
+						<li ui-sref="about">about</li>
+						<li ui-sref="contact">contact</li>
+						<li ui-sref="addClass">add class</li>
+						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
+						<li id="navAuth" ui-sref="auth">login/signup</li>
+					</ul>
+				</nav>
+				<div id="head">
 
+				</div>
+			</header>
+
+			<div id="main">
+				<div ui-view></div>
 			</div>
-		</header>
 
-		<div id="main">
-			<div ui-view></div>
+			<footer>
+				<hr>
+				<ul>
+					<li ui-sref="about">about</li>
+					<li ui-sref="contact">contact us</li>
+					<li ui-sref="help">help</li>
+				</ul>
+			</footer>
 		</div>
-
-		<footer>
-			<hr>
-			<ul>
-				<li ui-sref="about">about</li>
-				<li ui-sref="contact">contact us</li>
-				<li ui-sref="help">help</li>
-			</ul>
-		</footer>
 	</body>
 </html>
 

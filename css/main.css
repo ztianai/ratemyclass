@@ -110,10 +110,30 @@ footer li {
     display: block;
 }
 
-
-
 .text {
     margin-left: auto;
     margin-right: auto;
     width: 70%;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#wrapper {
+    min-height: 100%;
+    position: relative;
+}
+
+#main {
+   padding-bottom: 80px;   /* footer height */
+}
+
+footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 80px;
 }
