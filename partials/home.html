@@ -10,7 +10,7 @@
 
 <p>Recently Updated:</p>
 <div id="previewContainer">
-	<div class="homePreview" ng-repeat="obj in sampleClassList">
+	<div class="homePreview" ng-repeat="obj in classList| limitTo:4">
 		<img src="../img/blah.jpg">
 		<hr>
 		<h2>{{obj.title}}</h2>

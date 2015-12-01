@@ -45,13 +45,11 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 
 })
 
-.controller('homeCtrl', ['$scope', 'userAuthFactory', function($scope, $userAuthFactory) {
+.controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
        var ref = new Firebase("https://ratemyclass.firebaseio.com/classList/");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
+     $scope.classList = $firebaseArray(ref);
 
-       ref.limitToLast(4).on("value", function(snapshot) {
-        console.log(snapshot.val());
-        $scope.sampleClassList = snapshot.val();
-       })
+
 
 
 
