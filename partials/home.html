@@ -1,3 +1,4 @@
+
 <p id="welcome">Welcome to RateMyClass!</p>
 <div id="partialHead">
     <h1>What is RateMyClass?</h1>
@@ -7,47 +8,12 @@
 
 <hr id="homeHR">
 
+<p>Recently Updated:</p>
 <div id="previewContainer">
-	<div class="homePreview">
+	<div class="homePreview" ng-repeat="obj in classList| limitTo:4">
 		<img src="../img/blah.jpg">
 		<hr>
-		<h2>Title of Class</h2>
+		<h2>{{obj.title}}</h2>
 	</div>	
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
-
-
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>	
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
-	<div class="homePreview">
-		<img src="../img/blah.jpg">
-		<hr>
-		<h2>Title of Class</h2>
-	</div>
 </div>
+

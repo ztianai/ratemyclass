@@ -1,4 +1,4 @@
-
+'use strict';
 
 angular.module('rateMyClass', ['ui.router','firebase'])
 
@@ -45,45 +45,39 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 
 })
 
-.controller('homeCtrl', ['$scope', 'userAuthFactory', function($scope, $userAuthFactory) {
-       var ref = new Firebase("https://ratemyclass.firebaseio.com/classList");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
+.controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+       var ref = new Firebase("https://ratemyclass.firebaseio.com/classList/");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
+     $scope.classList = $firebaseArray(ref);
 
 
-//    $scope.clicked = function() {
-//      $userAuthFactory.clicked();
-//    }
+
 
 
     //THIS IS HOW YOU MAKE A NEW REVIEW/CLASS/WHATEVER
-    // ref.push({class:"blah", "review":5});
+    // ref.push({title:"Informatics 360"});
 
 
 }])
 
 .controller('searchCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    console.log("home controller!");
 }])
 
 .controller('aboutCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    console.log("home controller!");
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    console.log("home controller!");
 }])
 
 .controller('addclassCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    console.log("home controller!");
 }])
 
 .controller('reviewCtrl', ['$scope', '$firebaseObject','$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
     /* define reference to your firebase app */
     var ref = new Firebase("https://probech1.firebaseio.com/");
-    console.log("home controller!");
 
       	/* define reference to the "reviews" value in the app */
       	var reviewsRef = ref.child("reviews");
@@ -120,7 +114,6 @@ angular.module('rateMyClass', ['ui.router','firebase'])
 
   .controller('helpCtrl', ['$scope', function($scope) {
       var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-      console.log("home controller!");
   }])
 
   .factory('userAuthFactory', function() {
