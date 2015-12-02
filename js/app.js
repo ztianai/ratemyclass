@@ -101,21 +101,23 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
       	$scope.review = function() {
       		$scope.reviews.$add({
       			text: $scope.newReview,
-      			userId: -1,
-      			likes: 0,
+      			gpa: $scope.gpa,
+      			workload: $scope.workload,
+      			helpfulness: $scope.helpfulness,
+      			easiness: $scope.easiness,
       			time:Firebase.ServerValue.TIMESTAMP
       		})
       		.then(function(){
       			$scope.newReview = '';
       		})
       	}
-        $scope.gpas = ['3.5+', '3.0-3.5', '2.0-3.0', '2.0-'];
+        $scope.gpas = ['2.0 and lower', '2.0-3.0','3.0-3.5','3.5 and higher'];
         $scope.gpa = '';
-        $scope.workloads = ['1--Not Much Work', '2', '3', '4', '5--Super Heavy Work'];
+        $scope.workloads = ['1-Not Much Work', '2', '3', '4', '5-Super Heavy Work'];
         $scope.workload = '';
-        $scope.helpfulnesses = ['1--Not Useful', '2', '3', '4', '5--Gain Really Helpful Skills'];
+        $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
         $scope.helpfulness = '';
-        $scope.easinesses = ['1--Hardest Thing Ever', '2--Makes You Work For It', '3--The Usual', '4--Easy A', '5--Show Up & Pass'];
+        $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
         $scope.easiness = '';
         $(function() {
           $("#slider").slider({

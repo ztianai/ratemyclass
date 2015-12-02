@@ -10,7 +10,7 @@
     <!--SEARCH-->
     <div class="searchBar pull-right">
         <input type="text" ng-model="search"/>
-        <div ng-repeat="review in reviews | filter:search "> {{review.text}}</div>
+        <div ng-repeat="review in reviews | filter:search "> </div>
 
         </div>
     </div>
@@ -23,9 +23,7 @@
         <h1>Review</h1>
         <!-- Review form -->
         <form name="reviewForm" id="review-input">
-       <!--  <textarea placeholder="Enter your review..." name="text" class="form-control" ng-model="newReview" required
-                  ng-maxlength="500"></textarea>
-            <p class="help-block" ng-show="reviewForm.text.$error.maxlength">500 character limit!</p> -->
+
         <uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
         <br>
         <label for="prof">Professor: </label>
@@ -54,17 +52,18 @@
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
     <div class="review-box" ng-repeat="review in reviews | filter:search | orderBy:'-time'">
-        <div>
-            <span class="time">{{review.time}}</span>
-        </div>
 
-        <!-- Use an expression to show the text of the tweet -->
-        <div class="review">{{review.text}}</div>
-        <div class="likes">
-            <i ng-click="like(review)" class="fa fa-heart"></i>
-            <!-- Use an expression to show the number of likes -->
-            <span></span>
-        </div>
+        <div><span class="time">{{review.time}}</span></div>
+        <!-- Use an expression to show the text, gpa,workload, helpfulness, easiness of the tweet -->
+
+        <div class="reviewP">gpa: {{review.gpa}}</div>
+        <div class="reviewP">workload: {{review.workload}}</div>
+        <div class="reviewP">helpfulness: {{review.helpfulness}}</div>
+        <div class="reviewP">easiness: {{review.easiness}}</div>
+        <div class="reviewP">{{review.text}}</div>
+        <br>
+        <br>
+
     </div>
 <!-- end shown results -->
 </div>

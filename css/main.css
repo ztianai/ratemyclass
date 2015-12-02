@@ -116,13 +116,6 @@ footer li {
     width: 70%;
 }
 
-<<<<<<< HEAD
-
-div.reviewPage {
-    margin: 0 auto;
-    width:80%;
-
-=======
 html, body {
     height: 100%;
     margin: 0;
@@ -143,5 +136,13 @@ footer {
     bottom: 0;
     width: 100%;
     height: 80px;
->>>>>>> ae8096a7ac9122a29c52b8fb65db27d8d8fe69c9
+
+}
+
+.reviewP {
+    margin: 0 auto;
+    width:80%;
+    background-color:green;
+
+
 }
