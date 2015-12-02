@@ -27,7 +27,7 @@
         <uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
         <br>
         <label for="prof">Professor: </label>
-        <input type="text" name="prof" id="prof">
+        <input type="text" ng-model="prof" name="prof" id="prof">
         <br>
         <label for="gpa">GPA: </label>
         <select name="gpa" ng-model="gpa" ng-options="score for score in gpas" class="form-control" required></select>
@@ -55,12 +55,16 @@
 
         <div><span class="time">{{review.time}}</span></div>
         <!-- Use an expression to show the text, gpa,workload, helpfulness, easiness of the tweet -->
-
+        <div class="reviewP">
+            <uib-rating ng-model="review.star" max="max" readonly="!isReadonly"></uib-rating>
+        </div>
+        <div class="reviewP">Professor: {{review.prof}}</div>
         <div class="reviewP">gpa: {{review.gpa}}</div>
-        <div class="reviewP">workload: {{review.workload}}</div>
-        <div class="reviewP">helpfulness: {{review.helpfulness}}</div>
-        <div class="reviewP">easiness: {{review.easiness}}</div>
+        <div class="reviewP">Workload: {{review.workload}}</div>
+        <div class="reviewP">Helpfulness: {{review.helpfulness}}</div>
+        <div class="reviewP">Easiness: {{review.easiness}}</div>
         <div class="reviewP">{{review.text}}</div>
+        
         <br>
         <br>
 

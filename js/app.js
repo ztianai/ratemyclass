@@ -100,6 +100,8 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
       	/* Write an accessible (on scope) chirp() function to save a tweet */
       	$scope.review = function() {
       		$scope.reviews.$add({
+            star: $scope.rate,
+            prof: $scope.prof,
       			text: $scope.newReview,
       			gpa: $scope.gpa,
       			workload: $scope.workload,
@@ -119,18 +121,18 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
         $scope.helpfulness = '';
         $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
         $scope.easiness = '';
-        $(function() {
-          $("#slider").slider({
-            value: 0,
-            min: 0,
-            max: 5,
-            step: 1,
-            slide: function(event, ui){
-              $("#amount").val(ui.value);
-            }
-          });
-          $("#amount").val($("#slider").slider("value")); 
-        })
+        // $(function() {
+        //   $("#slider").slider({
+        //     value: 0,
+        //     min: 0,
+        //     max: 5,
+        //     step: 1,
+        //     slide: function(event, ui){
+        //       $("#amount").val(ui.value);
+        //     }
+        //   });
+        //   $("#amount").val($("#slider").slider("value")); 
+        // })
         $scope.rate = 0;
         $scope.max = 5;
         
