@@ -52,13 +52,18 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
                 animation: true,
                 templateUrl: 'partials/auth.html',
                 controller: 'authCtrl'
-
    });
   } 
 }])
 
-.controller('authCtrl', ['$scope', function($scope) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var users = new Firebase("https://ratemyclass.firebaseio.com/users");
+
+  $scope.users = $firebaseObject(users);
+  var Auth = $firebaseAuth(ref);
+
+  $scope.userObj = {};
 
   $scope.signUp = function() {
     ref.createUser({
@@ -70,7 +75,21 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
       } else {
         console.log("Successfully created user account with uid:", userData.uid);
       }
-    });
+    }).then($scope.signIn)
+    .then(function(authData) {
+
+      var newUserInfo = {
+        'handle':$scope.newUser.handle,
+      };
+
+      $scope.users[authData.uid] = newUserInfo;
+      $scope.users.$save();
+      $scope.userID = authData.uid;
+    })    
+    .catch(function(error){
+      //error handling (called on the promise)
+      console.log(error);
+    })
   }
 
   $scope.signIn = function() {
@@ -80,8 +99,11 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
   }, function(error, authData) {
     if (error) {
       console.log("Login Failed!", error);
-    } else {
+    }
+ else {
       console.log("Authenticated successfully with payload:", authData);
+      remember: "sessionOnly"
+      $scope.blah = $scope.newUser.handle;
     }
   });
 
