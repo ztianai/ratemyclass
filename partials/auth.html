@@ -1,4 +1,4 @@
-<form name="signupForm" novalidate>
+<form name="signupForm" novalidate id="signUpForm">
 
     <!-- Bind model "handle" to this input and make the help-block show up if too short -->
     <div class="form-group">
@@ -9,11 +9,11 @@
     </div>
 
     <!-- Bind model "avatar" to this input -->
-    <div class="form-group">
+<!--     <div class="form-group">
         <label for="avatar">Avatar Image URL:</label>
         <img class="avatar" ng-src="{{newUser.avatar}}">
         <input id="avatar" name="avatar" class="form-control" ng-model="newUser.avatar">
-    </div>
+    </div> -->
 
     <!-- Bind model "email" to this input and make the help-block show up if bad format -->
     <div class="form-group">
@@ -22,6 +22,7 @@
         <!-- Show an error message if the email is not valid -->
         <p class="help-block" >Not an email!</p>
     </div>
+
 
     <!-- Bind model "password" to this input -->
     <div class="form-group">

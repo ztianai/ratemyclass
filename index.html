@@ -23,7 +23,7 @@
 		<!-- our JS -->
 		<script src="js/app.js"></script>
 	</head>
-	<body>
+	<body ng-controller="MASTERCTRL">
 
 		<div id="wrapper">
 			<header>
@@ -35,7 +35,7 @@
 						<li ui-sref="contact">contact</li>
 						<li ui-sref="addClass">add class</li>
 						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
-						<li id="navAuth" ui-sref="auth">login/signup</li>
+						<li id="navAuth" ng-click="authInit()">login/signup</li>
 					</ul>
 				</nav>
 				<div id="head">

@@ -45,12 +45,46 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
 
 })
 
+.controller('MASTERCTRL', ['$scope', '$uibModal', function($scope, $uibModal) {
+
+  $scope.authInit = function() {
+    $uibModal.open({
+                animation: true,
+                templateUrl: 'partials/auth.html',
+                controller: 'authCtrl'
+
+   });
+  } 
+}])
+
+.controller('authCtrl', ['$scope', function($scope) {
+
+  $scope.signUp = function() {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    ref.createUser({
+      email    : $scope.newUser.email,
+      password : $scope.newUser.password
+    }, function(error, userData) {
+      if (error) {
+        console.log("Error creating user:", error);
+      } else {
+        console.log("Successfully created user account with uid:", userData.uid);
+      }
+    });
+  }
+
+  $scope.signIn = function() {
+
+
+
+
+  }
+
+}])
+
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
        var ref = new Firebase("https://ratemyclass.firebaseio.com/classList/");   //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
      $scope.classList = $firebaseArray(ref);
-
-
-
 
 
     //THIS IS HOW YOU MAKE A NEW REVIEW/CLASS/WHATEVER
@@ -144,14 +178,4 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
   .controller('helpCtrl', ['$scope', function($scope) {
       var ref = new Firebase("https://ratemyclass.firebaseio.com/");
   }])
-
-  .factory('userAuthFactory', function() {
-    var obj = {};
-
-    obj.clicked = function() {
-      console.log("clicked!");
-    }
-
-    return obj;
-  })
 
