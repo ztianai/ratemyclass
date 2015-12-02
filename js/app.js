@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rateMyClass', ['ui.router','firebase'])
+angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstrap'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -109,6 +109,31 @@ angular.module('rateMyClass', ['ui.router','firebase'])
       			$scope.newReview = '';
       		})
       	}
+        $scope.gpas = ['3.5+', '3.0-3.5', '2.0-3.0', '2.0-'];
+        $scope.gpa = '';
+        $scope.workloads = ['1--Not Much Work', '2', '3', '4', '5--Super Heavy Work'];
+        $scope.workload = '';
+        $scope.helpfulnesses = ['1--Not Useful', '2', '3', '4', '5--Gain Really Helpful Skills'];
+        $scope.helpfulness = '';
+        $scope.easinesses = ['1--Hardest Thing Ever', '2--Makes You Work For It', '3--The Usual', '4--Easy A', '5--Show Up & Pass'];
+        $scope.easiness = '';
+        $(function() {
+          $("#slider").slider({
+            value: 0,
+            min: 0,
+            max: 5,
+            step: 1,
+            slide: function(event, ui){
+              $("#amount").val(ui.value);
+            }
+          });
+          $("#amount").val($("#slider").slider("value")); 
+        })
+        $scope.rate = 0;
+        $scope.max = 5;
+        
+
+
   }])
 
 
