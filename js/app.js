@@ -58,9 +58,9 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
 }])
 
 .controller('authCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
   $scope.signUp = function() {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     ref.createUser({
       email    : $scope.newUser.email,
       password : $scope.newUser.password
@@ -74,7 +74,16 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
   }
 
   $scope.signIn = function() {
-
+  ref.authWithPassword({
+    email    : $scope.newUser.email,
+    password : $scope.newUser.password
+  }, function(error, authData) {
+    if (error) {
+      console.log("Login Failed!", error);
+    } else {
+      console.log("Authenticated successfully with payload:", authData);
+    }
+  });
 
 
 
