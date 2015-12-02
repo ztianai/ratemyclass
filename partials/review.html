@@ -19,13 +19,30 @@
     </ul>
 
     <!--REVIEW-->
-    <div class="review">
+    <div class="review container">
         <h1>Review</h1>
         <!-- Review form -->
         <form name="reviewForm" id="review-input">
-        <textarea placeholder="Enter your review..." name="text" class="form-control" ng-model="newReview" required
+       <!--  <textarea placeholder="Enter your review..." name="text" class="form-control" ng-model="newReview" required
                   ng-maxlength="500"></textarea>
-            <p class="help-block" ng-show="reviewForm.text.$error.maxlength">500 character limit!</p>
+            <p class="help-block" ng-show="reviewForm.text.$error.maxlength">500 character limit!</p> -->
+        <uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null" aria-labelledby="default-rating"></uib-rating>
+        <br>
+        <label for="prof">Professor: </label>
+        <input type="text" name="prof" id="prof">
+        <br>
+        <label for="gpa">GPA: </label>
+        <select name="gpa" ng-model="gpa" ng-options="score for score in gpas" class="form-control" required></select>
+        <label for="workload">Workload: </label>
+        <select name="workload" ng-model="workload" ng-options="score for score in workloads" class="form-control" required></select>
+        <label for="easiness">Easiness: </label>
+        <select name="easiness" ng-model="easiness" ng-options="score for score in easinesses" class="form-control" required></select>
+        <label for="helpfulness">Helpfulness: </label>
+        <select name="helpfulness" ng-model="helpfulness" ng-options="score for score in helpfulnesses" class="form-control" required></select>
+        <br>
+<!--        <label for="comment">Comment: </label> -->
+        <textarea placeholder="Leave more comments..." name="comment" class="form-control" ng-model="newComment" required></textarea> 
+        <br>
             <div class="form-group send-review">
                 <button type="submit" class="btn btn-primary" ng-click="review()" ng-disabled="reviewForm.$invalid">
                     <i class="fa fa-pencil-square-o"></i> Share
