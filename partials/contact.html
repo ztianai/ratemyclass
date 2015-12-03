@@ -1,14 +1,55 @@
 <div id="partialHead">
-    <h1>Contact</h1>
+    <h1>Contact Us</h1>
 </div>
 <div>
-	<p class="text">
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus, nibh ut posuere placerat, est dolor laoreet dui, ac lobortis diam nulla molestie purus. Aliquam vitae ultrices leo, sed dapibus dui. Vivamus id ultrices velit, et iaculis diam. Morbi non accumsan urna, ut cursus augue. Quisque dapibus aliquam leo. Phasellus sagittis massa vehicula libero ullamcorper fermentum. Fusce iaculis eros urna, vitae efficitur ipsum faucibus non. Morbi felis felis, aliquam vitae interdum condimentum, varius lacinia urna. Praesent nec quam eu turpis consequat tincidunt. Fusce accumsan hendrerit massa, at bibendum nibh molestie nec. Donec pharetra, lorem vel interdum ultricies, nunc eros venenatis nulla, eu vehicula sem justo quis nulla. Ut fringilla, felis ac pulvinar finibus, odio dui porttitor ipsum, vitae ornare magna felis non felis. Aliquam bibendum aliquam ante, eget bibendum dui efficitur sit amet. Mauris et sem id est aliquet sodales in vel lorem. Nulla ut fermentum eros.
-		<br>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus, nibh ut posuere placerat, est dolor laoreet dui, ac lobortis diam nulla molestie purus. Aliquam vitae ultrices leo, sed dapibus dui. Vivamus id ultrices velit, et iaculis diam. Morbi non accumsan urna, ut cursus augue. Quisque dapibus aliquam leo. Phasellus sagittis massa vehicula libero ullamcorper fermentum. Fusce iaculis eros urna, vitae efficitur ipsum faucibus non. Morbi felis felis, aliquam vitae interdum condimentum, varius lacinia urna. Praesent nec quam eu turpis consequat tincidunt. Fusce accumsan hendrerit massa, at bibendum nibh molestie nec. Donec pharetra, lorem vel interdum ultricies, nunc eros venenatis nulla, eu vehicula sem justo quis nulla. Ut fringilla, felis ac pulvinar finibus, odio dui porttitor ipsum, vitae ornare magna felis non felis. Aliquam bibendum aliquam ante, eget bibendum dui efficitur sit amet. Mauris et sem id est aliquet sodales in vel lorem. Nulla ut fermentum eros.
-		<br>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus, nibh ut posuere placerat, est dolor laoreet dui, ac lobortis diam nulla molestie purus. Aliquam vitae ultrices leo, sed dapibus dui. Vivamus id ultrices velit, et iaculis diam. Morbi non accumsan urna, ut cursus augue. Quisque dapibus aliquam leo. Phasellus sagittis massa vehicula libero ullamcorper fermentum. Fusce iaculis eros urna, vitae efficitur ipsum faucibus non. Morbi felis felis, aliquam vitae interdum condimentum, varius lacinia urna. Praesent nec quam eu turpis consequat tincidunt. Fusce accumsan hendrerit massa, at bibendum nibh molestie nec. Donec pharetra, lorem vel interdum ultricies, nunc eros venenatis nulla, eu vehicula sem justo quis nulla. Ut fringilla, felis ac pulvinar finibus, odio dui porttitor ipsum, vitae ornare magna felis non felis. Aliquam bibendum aliquam ante, eget bibendum dui efficitur sit amet. Mauris et sem id est aliquet sodales in vel lorem. Nulla ut fermentum eros.
-		<br>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam maximus, nibh ut posuere placerat, est dolor laoreet dui, ac lobortis diam nulla molestie purus. Aliquam vitae ultrices leo, sed dapibus dui. Vivamus id ultrices velit, et iaculis diam. Morbi non accumsan urna, ut cursus augue. Quisque dapibus aliquam leo. Phasellus sagittis massa vehicula libero ullamcorper fermentum. Fusce iaculis eros urna, vitae efficitur ipsum faucibus non. Morbi felis felis, aliquam vitae interdum condimentum, varius lacinia urna. Praesent nec quam eu turpis consequat tincidunt. Fusce accumsan hendrerit massa, at bibendum nibh molestie nec. Donec pharetra, lorem vel interdum ultricies, nunc eros venenatis nulla, eu vehicula sem justo quis nulla. Ut fringilla, felis ac pulvinar finibus, odio dui porttitor ipsum, vitae ornare magna felis non felis. Aliquam bibendum aliquam ante, eget bibendum dui efficitur sit amet. Mauris et sem id est aliquet sodales in vel lorem. Nulla ut fermentum eros.
+	<p class="text about">
+		Would you like to get in touch? Whether you have a simple question, would like to join our team, or find a bug on our site, please use the contact form below and we will respond to your inquiry within 48 business hours.
 	</p>
+
+	<div ng-controller="contactCtrl">
+		<p ng-show="submitted" class="alert alert-success">thank you for your request!</p>
+
+		<form name="contactForm" id="formContact" action="MAILTO:contact@ratemyclass.com" method="post" enctype="text/plain" novalidate>
+			
+			<!-- Name -->
+			<div class="form-group" ng-class="{'has-error':contactForm.name.$invalid && contactForm.name.$touched}">
+				<label for="name">Name:</label>
+				<input type="text" ng-model="name" class="form-control" name="name" required>
+				<p ng-show="contactForm.name.$error.required && contactForm.name.$touched" class="help-block">required</p>
+			</div>
+
+			<!-- Email -->
+			<div class="form-group" ng-class="{'has-error':contactForm.email.$invalid && (!contactForm.email.$pristine || contactForm.email.$touched)}">
+				<label for="email">Email:</label>
+				<input type="email" ng-model="email" class="form-control" name="email" id="email" required>
+				<p ng-show="contactForm.email.$error.email && !contactForm.email.$pristine" class="help-block">enter a valid email</p>
+		        <p ng-show="contactForm.email.$error.required && contactForm.email.$touched" class="help-block">required</p>
+			</div>
+
+			<!-- Option -->
+			<div class="form-group" ng-class="{'has-error':contactForm.option.$invalid && contactForm.option.$touched}">
+				<label for="option">Topic:</label>
+        		<select name="option" ng-model="option" class="form-control" required>
+        			<option value="General">General</option>
+        			<option value="error">Error</option>
+        			<option value="jobs">Jobs</option>
+        			<option value="other">Other</option>
+        		</select>
+        		<p ng-show="contactForm.option.$error.required && contactForm.option.$touched" class="help-block">required</p>
+			</div>
+
+			<!-- Comments -->
+			<div class="form-group" ng-class="{'has-error':contactForm.comments.$invalid && contactForm.comments.$touched}">
+				<label for="comments">Comments:</label>
+				<textarea ng-model="comments" id="comments" class="form-control" name="comments" required></textarea>
+				<p ng-show="contactForm.comments.$error.required && contactForm.comments.$touched" class="help-block">required</p>
+			</div>
+
+			 <!-- Buttons -->
+			 <div id="contactButtons">
+		    	<button class="myButton" type="submit" name="submit" ng-disabled="contactForm.$invalid" ng-model="submitFormButton" ng-click="submitForm()">send</button>
+		    	<button class="myButton" type="reset" name="reset" ng-model="resetFormButton" ng-click="resetForm()">reset</button>
+			</div>
+		</form>
+	</div>
 </div>

@@ -14,7 +14,6 @@
   		<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.7/angular-animate.js"></script>
     	<script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.14.3.js"></script>
 
-
 		<!-- Firebase -->
 		<script src="https://cdn.firebase.com/js/client/2.3.1/firebase.js"></script>
 		<!-- AngularFire -->
@@ -24,7 +23,6 @@
 		<script src="js/app.js"></script>
 	</head>
 	<body ng-controller="MASTERCTRL">
-
 		<div id="wrapper">
 			<header>
 				<nav>
@@ -38,15 +36,11 @@
 						<li id="navAuth" ng-click="authInit()">login/signup</li>
 					</ul>
 				</nav>
-				<div id="head">
-
-				</div>
+				<div id="head"></div>
 			</header>
-
 			<div id="main">
 				<div ui-view></div>
 			</div>
-
 			<footer>
 				<hr>
 				<ul>
@@ -58,4 +52,3 @@
 		</div>
 	</body>
 </html>
-

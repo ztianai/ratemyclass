@@ -134,6 +134,17 @@ angular.module('rateMyClass', ['ui.router','firebase', 'ngAnimate', 'ui.bootstra
 
 .controller('contactCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+
+    $scope.submitForm = function() {
+        $scope.submitted = true;
+    }
+
+    $scope.resetForm = function() {
+        $scope.submitted = false;
+        $scope.contactForm.$setPristine();
+        $scope.contactForm.$setUntouched();
+        $scope.contactForm.$invalid = true;
+    }
 }])
 
 .controller('addclassCtrl', ['$scope', function($scope) {
