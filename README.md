@@ -1,1 +1,1 @@
-# ratemyclass
+# Ratemyclass
