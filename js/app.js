@@ -156,7 +156,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //         $scope.newChirp = "";
     //     })
     // };
-
 }])
 
 
@@ -196,8 +195,35 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
-.controller('addclassCtrl', ['$scope', function($scope) {
+.controller('addclassCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var chirps = ref.child('classes');
+    $scope.classList = $firebaseArray(chirps);
+
+
+    $scope.addClass = function() {
+      var className = $scope.addClassForm.className;
+      $scope.classList.$add({
+        name:className,
+        reviews:[],
+      }).then(function() {
+        $scope.addClassForm.className = "";
+      })
+    }
+
+        /* Write an accessible (on scope) chirp() function to save a tweet */
+    // $scope.chirp = function() {
+    //     var text = $scope.newChirp;
+    //     $scope.chirpsArray.$add({
+    //         text: text,
+    //         userID: -1,
+    //         likes: 0,
+    //         time: Firebase.ServerValue.TIMESTAMP
+    //     }).then(function() {
+    //         $scope.newChirp = "";
+    //     })
+    // };
+
 }])
 
 .controller('reviewCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
