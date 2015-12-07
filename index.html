@@ -31,9 +31,10 @@
 						<li ui-sref="search">search</li>
 						<li ui-sref="about">about</li>
 						<li ui-sref="contact">contact</li>
-						<li ui-sref="addClass">add class</li>
+						<li ui-sref="addClass" ng-show="!userVerified">add class</li>
 						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
-						<li id="navAuth" ng-click="authInit()">login/signup</li>
+						<li id="navAuth" ng-show="userVerified" ng-click="authInit()">login/signup</li>
+						<li ng-controller="authCtrl">{{users[userId].handle}}</li>
 					</ul>
 				</nav>
 				<div id="head"></div>
