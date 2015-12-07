@@ -13,12 +13,8 @@
         <label for="className">Class Name:</label>
         <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
 
-		<input type="text" ng-model="selected" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control">
+		<input type="text" ng-model="selected" uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control">
 
         <button type="submit" class="btn btn-primary" ng-click="addClass()">Add Review</button>
     </div>
 </form>
-
-
-
-
