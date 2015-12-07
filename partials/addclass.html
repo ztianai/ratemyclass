@@ -6,13 +6,15 @@
 	<form name="addClassForm" novalidate id="addClassForm">
 
     <!-- Bind model "handle" to this input and make the help-block show up if too short -->
-    <div class="form-group">
+    <div class="form-group container-fluid typeahead-demo">
+
+		
+
         <label for="className">Class Name:</label>
         <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
-    </div>
 
-    <!-- Submit buttons -->
-    <div class="form-group">
+		<input type="text" ng-model="selected" uib-typeahead="state for state in states | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control">
+
         <button type="submit" class="btn btn-primary" ng-click="addClass()">Add Review</button>
     </div>
 </form>
