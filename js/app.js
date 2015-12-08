@@ -157,7 +157,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 //////////
 
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/classList/"); //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
     $scope.classList = $firebaseArray(ref);
 
 
@@ -190,7 +190,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
-.controller('addclassCtrl', ['$http', '$scope', '$firebaseArray', function($http, $scope, $firebaseArray) {
+.controller('addclassCtrl', ['$http', '$scope', '$firebaseArray', '$location', function($http, $scope, $firebaseArray, $location) {
     $scope.selected = undefined;
 
 
@@ -210,9 +210,11 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         name:className,
         institution:$scope.selectedSchool,
         professor: $scope.addClassForm.professor,
+        timestamp: Firebase.ServerValue.TIMESTAMP,
         reviews:[],
       }).then(function() {
         $scope.addClassForm.className = "";
+        $location.path('/');
       })
     }
 
