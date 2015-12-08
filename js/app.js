@@ -281,7 +281,8 @@ $scope.setMaster = function(font) {
                 workload: $scope.workload,
                 helpfulness: $scope.helpfulness,
                 easiness: $scope.easiness,
-                time: Firebase.ServerValue.TIMESTAMP
+                time: Firebase.ServerValue.TIMESTAMP,
+                quarter: $scope.quarter
             })
             .then(function() {
                 $scope.newReview = '';
