@@ -217,6 +217,7 @@ $scope.setMaster = function(font) {
     $scope.addClass = function() {
       var className = $scope.addClassForm.className;
       $scope.classList.$add({
+        icon: "fa " + $scope.selected,
         name:className,
         institution:$scope.selectedSchool,
         professor: $scope.addClassForm.professor,

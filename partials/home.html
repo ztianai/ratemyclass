@@ -11,7 +11,7 @@
 <p>Recently Updated:</p>
 <div id="previewContainer">
 	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:4 ">
-		<img src="../img/blah.jpg">
+		<i class="{{obj.icon}}"></i>
 		<hr>
 		<h2>{{obj.name}}</h2>
 	</div>	
