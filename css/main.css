@@ -137,11 +137,6 @@ footer {
 
 }
 
-.reviewP {
-    margin: 0 auto;
-    width:80%;
-    background-color:green;
-}
 
 /*Sign Up Page*/
 #signUpForm {
@@ -260,20 +255,43 @@ i {
     background-color: blue;
 }
 
+
+.review-box{
+    margin:2em;
+
 #homePage {
     background: url('../img/background.jpeg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
+
+
 }
 
 
 
+.review-item {
+    margin: 0 auto;
+    width:90%;
+    background-color: #f0eceb;
+}
+
+.ratings {
+    float:left;
+    background-color: #729f98;
+}
 
 
+.time {
+    float: right;
+}
+
+.star {
+    float: left;
+}
 
 
-
-
-
-
+.details {
+    margin-top: 1em;
+    padding-right: 1em;
+}
