@@ -69,7 +69,7 @@
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
 
-    <div class="review-box" ng-repeat="review in reviews | filter:search | orderBy:'-time'">
+    <div class="review-box" ng-repeat="review in reviews | filter: reviewFilter | orderBy:'-time'">
             <div class="review-item">
              
                 <div class="star">

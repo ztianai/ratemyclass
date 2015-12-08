@@ -207,7 +207,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
   $http.get("../src/collegeData.json").then(function(response){
-    console.log(response.data);
     $scope.colleges = response.data;
   });
 
@@ -240,6 +239,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
 
+
+    $scope.reviewFilter = $stateParams.name && $stateParams.school;
     // /* create a $firebaseArray for the chirps reference and add to scope */
     // $scope.reviews = $firebaseArray(reviewsRef);
 
