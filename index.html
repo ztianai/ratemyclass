@@ -24,20 +24,20 @@
 	</head>
 	<body ng-controller="MASTERCTRL">
 		<div id="wrapper">
-			<header>
+			<header  ng-controller="authCtrl" >
 				<nav>
 					<ul>
 						<li ui-sref="home">home</li>
 						<li ui-sref="search">search</li>
 						<li ui-sref="addClass" ng-show="userVerified">add class</li>
 						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
-						<li id="navAuth" ng-show="userVerified" ng-click="authInit()">login/signup</li>
+						<li id="navAuth" ng-show="!userVerified" ng-click="authInit()">login/signup</li>
 					</ul>
-				    <div ng-controller="authCtrl" class="btn-group" uib-dropdown is-open="status.isopen" ng-show="userVerified">
+				    <div class="btn-group" uib-dropdown is-open="status.isopen" ng-show="userVerified">
 				      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
 				        {{users[userId].handle}}<span class="caret"></span>
 				      </button>
-				      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+				      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button" id="authOptionsDropDown">
 				        <li role="menuitem"><a href="#">Action</a></li>
 				        <li role="menuitem"><a href="#">Another action</a></li>
 				        <li role="menuitem"><a href="#">Something else here</a></li>
@@ -48,6 +48,8 @@
 				</nav>
 				<div id="head"></div>
 			</header>
+
+
 			<div id="main">
 				<div ui-view></div>
 			</div>

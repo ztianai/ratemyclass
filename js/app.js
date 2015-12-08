@@ -47,7 +47,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 .controller('MASTERCTRL', ['$scope', '$uibModal', function($scope, $uibModal) {
 
-    $scope.userVerified = true;
     $scope.authInit = function() {
         $uibModal.open({
             animation: true,
@@ -57,13 +56,17 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
     }
 
-
+  $scope.changeVerification = function(verified) {
+    $scope.userVerified = verified;
+    console.log($scope.userVerified);
+    return $scope.userVerified;
+  };
 
 
 }])
 
 //////////
-.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $uibModal) {
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -108,11 +111,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
                 $scope.userID = authData.uid;
 
-                $scope.userVerified = true;
+                $scope.changeVerification(true);
+
             })
             .catch(function(error) {
                 //error handling (called on the promise)
-                $scope.userVerified = false;
+                $scope.changeVerification(false);
                 console.log(error);
             })
     };
@@ -120,26 +124,25 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //Make LogOut function available to views
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
-        $scope.userVerified = false;
-    };
+            $scope.changeVerification(false);
+        };
 
     //Any time auth status updates, set the userId so we know
     Auth.$onAuth(function(authData) {
         if (authData) { //if we are authorized
             $scope.userId = authData.uid;
-            $scope.userVerified = true;
-        } else {
+                $scope.changeVerification(true);
+            } else {
             $scope.userId = undefined;
-            $scope.userVerified = false;
-        }
-        console.log("auth changed");
+                $scope.changeVerification(false);
+            }
     });
 
     //Test if already logged in (when page load)
     var authData = Auth.$getAuth(); //get if we're authorized
     if (authData) {
         $scope.userId = authData.uid;
-        $scope.userVerified = false;
+        $scope.changeVerification(true);
     }
 
     //separate signIn function
@@ -159,16 +162,11 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
     $scope.classList = $firebaseArray(ref);
-
-
-    //THIS IS HOW YOU MAKE A NEW REVIEW/CLASS/WHATEVER
-    // ref.push({title:"Informatics 360"});
-
-
 }])
 
-.controller('searchCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+.controller('searchCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/");
+    $scope.classList = $firebaseArray(ref);
 }])
 
 .controller('aboutCtrl', ['$scope', function($scope) {
