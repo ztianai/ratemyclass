@@ -48,7 +48,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('MASTERCTRL', ['$http', '$scope', '$uibModal', function($http, $scope, $uibModal) {
 
     $scope.authInit = function() {
-        $uibModal.open({
+        $scope.uibModalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'partials/auth.html',
             controller: 'authCtrl',
@@ -67,7 +67,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 //////////
-.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $uibModal) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth, $uibModalInstance) {
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -91,6 +91,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.signUp = function() {
         console.log("creating user " + $scope.newUser.email);
+
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
                 'email': $scope.newUser.email,
@@ -113,6 +114,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 $scope.userID = authData.uid;
 
                 $scope.changeVerification(true);
+
+
 
             })
             .catch(function(error) {
@@ -151,10 +154,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         var promise = Auth.$authWithPassword({
             'email': $scope.newUser.email,
             'password': $scope.newUser.password
+        }).then(function() {
+            $scope.uibModalInstance.dismiss();
         });
-        return promise; //return promise so we can *chain promises*
+       return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
-    };
+    }
 }])
 
 
@@ -232,9 +237,137 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 }])
 
 //////////////////////
-.controller('reviewCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
+.controller('reviewCtrl', ['$scope', '$uibModal', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $uibModal, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
 
     console.log($stateParams);
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var reviews = ref.child('reviews');
+    $scope.reviews = $firebaseArray(reviews);
+
+
+    $scope.reviewFilter = $stateParams.name && $stateParams.school;
+    // // /* create a $firebaseArray for the chirps reference and add to scope */
+    // // $scope.reviews = $firebaseArray(reviewsRef);
+
+    // // /* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
+    // // $scope.users = $firebaseObject(usersRef);
+
+    // // var Auth = $firebaseAuth(ref);
+
+    // // $scope.newUser = {};
+
+    // // console.log($stateParams);
+
+    // // $scope.ClassName = $stateParams.name;
+
+
+    // // /* Write an accessible (on scope) chirp() function to save a tweet */
+    // // $scope.submitReview = function() {
+    // //     $scope.reviews.$add({
+    // //             star: $scope.rate,
+    // //             prof: $scope.prof,
+    // //             text: $scope.newReview,
+    // //             gpa: $scope.gpa,
+    // //             workload: $scope.workload,
+    // //             helpfulness: $scope.helpfulness,
+    // //             easiness: $scope.easiness,
+    // //             time: Firebase.ServerValue.TIMESTAMP
+    // //         })
+    // //         .then(function() {
+    // //             $scope.newReview = '';
+    // //         })
+    // // }
+
+
+    // // $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    // // $scope.gpa = '';
+    // // $scope.workloads = ['1-Not Much Work', '2', '3', '4', '5-Super Heavy Work'];
+    // // $scope.workload = '';
+    // // $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    // // $scope.helpfulness = '';
+    // // $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    // // $scope.easiness = '';
+    // // $scope.rate = 0;
+    // // $scope.max = 5;
+
+    // // // $(function() {
+    // // //   $("#slider").slider({
+    // // //     value: 0,
+    // // //     min: 0,
+    // // //     max: 5,
+    // // //     step: 1,
+    // // //     slide: function(event, ui){
+    // // //       $("#amount").val(ui.value);
+    // // //     }
+    // // //   });
+    // // //   $("#amount").val($("#slider").slider("value")); 
+    // // // })
+
+
+
+    // /* Write an accessible (on scope) chirp() function to save a tweet */
+    // $scope.submitReview = function() {
+    //                 console.log("added review");
+
+    //     $scope.reviews.$add({
+    //             school: $stateParams.school,
+    //             className: $stateParams.name,
+    //             star: $scope.rate,
+    //             prof: $scope.prof,
+    //             text: $scope.newReview,
+    //             gpa: $scope.gpa,
+    //             workload: $scope.workload,
+    //             helpfulness: $scope.helpfulness,
+    //             easiness: $scope.easiness,
+    //             time: Firebase.ServerValue.TIMESTAMP,
+    //             quarter: $scope.quarter
+    //         })
+    //         .then(function() {
+    //             $scope.newReview = '';
+    //         })
+    // }
+    // $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    // $scope.gpa = '';
+    // $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
+    // $scope.workload = '';
+    // $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    // $scope.helpfulness = '';
+    // $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    // $scope.easiness = '';
+    // // $(function() {
+    // //   $("#slider").slider({
+    // //     value: 0,
+    // //     min: 0,
+    // //     max: 5,
+    // //     step: 1,
+    // //     slide: function(event, ui){
+    // //       $("#amount").val(ui.value);
+    // //     }
+    // //   });
+    // //   $("#amount").val($("#slider").slider("value")); 
+    // // })
+    $scope.rate = 0;
+    $scope.max = 5;
+
+    $scope.addReview = function(){
+        var modalInstance = $uibModal.open({
+            templateUrl: 'partials/review-modal.html',
+            controller: 'ReviewModalCtrl',
+            scope:$scope
+        })
+    }
+
+
+
+
+}])
+
+
+.controller('helpCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+}])
+
+.controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
@@ -299,7 +432,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     // // })
 
 
-
+$scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    $scope.gpa = '';
+    $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
+    $scope.workload = '';
+    $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    $scope.helpfulness = '';
+    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    $scope.easiness = '';
     /* Write an accessible (on scope) chirp() function to save a tweet */
     $scope.submitReview = function() {
                     console.log("added review");
@@ -320,15 +460,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             .then(function() {
                 $scope.newReview = '';
             })
+
     }
-    $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
-    $scope.gpa = '';
-    $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
-    $scope.workload = '';
-    $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
-    $scope.helpfulness = '';
-    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
-    $scope.easiness = '';
+    
     // $(function() {
     //   $("#slider").slider({
     //     value: 0,
@@ -344,12 +478,4 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.rate = 0;
     $scope.max = 5;
 
-
-
-
-}])
-
-
-.controller('helpCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
