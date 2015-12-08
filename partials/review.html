@@ -41,7 +41,7 @@
         <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required></textarea>
         <br>
             <div class="form-group send-review">
-                <button type="submit" class="btn btn-primary" ng-click="review()" ng-disabled="reviewForm.$invalid">
+                <button type="submit" class="btn btn-primary" ng-click="submitReview()" ng-disabled="reviewForm.$invalid">
                     <i class="fa fa-pencil-square-o"></i> Share
                 </button>
             </div>
@@ -51,7 +51,7 @@
     <!-- Show everyone's reviews -->
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
-    <div class="review-box" ng-repeat="review in reviews | filter:search | orderBy:'-time'">
+    <div class="review-box" ng-repeat="review in reviews | filter:{id} | orderBy:'-time'">
 
         <div><span class="time">{{review.time | date:'short'}}</span></div>
         <!-- Use an expression to show the text, gpa,workload, helpfulness, easiness of the tweet -->

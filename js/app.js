@@ -39,7 +39,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         .state('review', {
             url: "/{school}/{name}",
             templateUrl: "partials/review.html",
-            controller: 'reviewCtrl'
+            controller: 'reviewCtrl',
+            id: "{id}"
         })
     $urlRouterProvider.otherwise("/");
 
@@ -196,12 +197,12 @@ $http.get("../src/font-awesome.json").then(function(response){
 .controller('addclassCtrl', ['$http', '$scope', '$firebaseArray', '$location', function($http, $scope, $firebaseArray, $location) {
     $scope.selected = undefined;
 
-$scope.isSelected = function(font) {
-    return $scope.selected === font;
-}
-$scope.setMaster = function(font) {
-    $scope.selected = font;
-}
+    $scope.isSelected = function(font) {
+        return $scope.selected === font;
+    }
+    $scope.setMaster = function(font) {
+        $scope.selected = font;
+    }
 
 
   $http.get("../src/collegeData.json").then(function(response){
@@ -210,8 +211,8 @@ $scope.setMaster = function(font) {
   });
 
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    var chirps = ref.child('classes');
-    $scope.classList = $firebaseArray(chirps);
+    var classes = ref.child('classes');
+    $scope.classList = $firebaseArray(classes);
 
 
     $scope.addClass = function() {
@@ -228,86 +229,74 @@ $scope.setMaster = function(font) {
         $location.path('/');
       })
     }
-
-        /* Write an accessible (on scope) chirp() function to save a tweet */
-    // $scope.chirp = function() {
-    //     var text = $scope.newChirp;
-    //     $scope.chirpsArray.$add({
-    //         text: text,
-    //         userID: -1,
-    //         likes: 0,
-    //         time: Firebase.ServerValue.TIMESTAMP
-    //     }).then(function() {
-    //         $scope.newChirp = "";
-    //     })
-    // };
-
 }])
 
 //////////////////////
 .controller('reviewCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
-    /* define reference to your firebase app */
-    var ref = new Firebase("https://probech1.firebaseio.com/");
-
-    /* define reference to the "reviews" value in the app */
-    var reviewsRef = ref.child("reviews");
-
-    /* define reference to the "users" value in the app */
-    var usersRef = ref.child("valueName");
-
-    /* create a $firebaseArray for the chirps reference and add to scope */
-    $scope.reviews = $firebaseArray(reviewsRef);
-
-    /* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
-    $scope.users = $firebaseObject(usersRef);
-
-    var Auth = $firebaseAuth(ref);
-
-    $scope.newUser = {};
 
     console.log($stateParams);
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var reviews = ref.child('reviews');
+    $scope.reviews = $firebaseArray(reviews);
 
-    $scope.ClassName = $stateParams.name;
+    // /* create a $firebaseArray for the chirps reference and add to scope */
+    // $scope.reviews = $firebaseArray(reviewsRef);
+
+    // /* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
+    // $scope.users = $firebaseObject(usersRef);
+
+    // var Auth = $firebaseAuth(ref);
+
+    // $scope.newUser = {};
+
+    // console.log($stateParams);
+
+    // $scope.ClassName = $stateParams.name;
 
 
-    /* Write an accessible (on scope) chirp() function to save a tweet */
-    $scope.review = function() {
-        $scope.reviews.$add({
-                star: $scope.rate,
-                prof: $scope.prof,
-                text: $scope.newReview,
-                gpa: $scope.gpa,
-                workload: $scope.workload,
-                helpfulness: $scope.helpfulness,
-                easiness: $scope.easiness,
-                time: Firebase.ServerValue.TIMESTAMP
-            })
-            .then(function() {
-                $scope.newReview = '';
-            })
-    }
-    $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
-    $scope.gpa = '';
-    $scope.workloads = ['1-Not Much Work', '2', '3', '4', '5-Super Heavy Work'];
-    $scope.workload = '';
-    $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
-    $scope.helpfulness = '';
-    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
-    $scope.easiness = '';
-    // $(function() {
-    //   $("#slider").slider({
-    //     value: 0,
-    //     min: 0,
-    //     max: 5,
-    //     step: 1,
-    //     slide: function(event, ui){
-    //       $("#amount").val(ui.value);
-    //     }
-    //   });
-    //   $("#amount").val($("#slider").slider("value")); 
-    // })
-    $scope.rate = 0;
-    $scope.max = 5;
+    // /* Write an accessible (on scope) chirp() function to save a tweet */
+    // $scope.submitReview = function() {
+    //     $scope.reviews.$add({
+    //             star: $scope.rate,
+    //             prof: $scope.prof,
+    //             text: $scope.newReview,
+    //             gpa: $scope.gpa,
+    //             workload: $scope.workload,
+    //             helpfulness: $scope.helpfulness,
+    //             easiness: $scope.easiness,
+    //             time: Firebase.ServerValue.TIMESTAMP
+    //         })
+    //         .then(function() {
+    //             $scope.newReview = '';
+    //         })
+    // }
+
+
+    // $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    // $scope.gpa = '';
+    // $scope.workloads = ['1-Not Much Work', '2', '3', '4', '5-Super Heavy Work'];
+    // $scope.workload = '';
+    // $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    // $scope.helpfulness = '';
+    // $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    // $scope.easiness = '';
+    // $scope.rate = 0;
+    // $scope.max = 5;
+
+    // // $(function() {
+    // //   $("#slider").slider({
+    // //     value: 0,
+    // //     min: 0,
+    // //     max: 5,
+    // //     step: 1,
+    // //     slide: function(event, ui){
+    // //       $("#amount").val(ui.value);
+    // //     }
+    // //   });
+    // //   $("#amount").val($("#slider").slider("value")); 
+    // // })
+
+
 
 
 
