@@ -41,6 +41,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             templateUrl: "partials/help.html",
             controller: 'helpCtrl'
         })
+        .state('class', {
+            url:'/{school}/{name}',
+            template:'<h1>hello</h1>'
+        })
     $urlRouterProvider.otherwise("/");
 
 })

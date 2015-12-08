@@ -208,10 +208,12 @@ footer {
 
 
 
+#searchForm {
+    position: absolute;
+    left: 10px;
+}
 
 #searchContainer {
-    position: absolute;
-    text-align: left;
 }
 
 
