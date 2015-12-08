@@ -29,13 +29,22 @@
 					<ul>
 						<li ui-sref="home">home</li>
 						<li ui-sref="search">search</li>
-						<li ui-sref="about">about</li>
-						<li ui-sref="contact">contact</li>
-						<li ui-sref="addClass" ng-show="!userVerified">add class</li>
+						<li ui-sref="addClass" ng-show="userVerified">add class</li>
 						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
 						<li id="navAuth" ng-show="userVerified" ng-click="authInit()">login/signup</li>
-						<li ng-controller="authCtrl">{{users[userId].handle}}</li>
 					</ul>
+				    <div ng-controller="authCtrl" class="btn-group" uib-dropdown is-open="status.isopen" ng-show="userVerified">
+				      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
+				        {{users[userId].handle}}<span class="caret"></span>
+				      </button>
+				      <ul class="uib-dropdown-menu" role="menu" aria-labelledby="single-button">
+				        <li role="menuitem"><a href="#">Action</a></li>
+				        <li role="menuitem"><a href="#">Another action</a></li>
+				        <li role="menuitem"><a href="#">Something else here</a></li>
+				        <li class="divider"></li>
+				        <li role="menuitem"><a ng-click="logOut()">Log Out</a></li>
+				      </ul>
+				    </div>
 				</nav>
 				<div id="head"></div>
 			</header>

@@ -47,6 +47,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 .controller('MASTERCTRL', ['$scope', '$uibModal', function($scope, $uibModal) {
 
+    $scope.userVerified = true;
     $scope.authInit = function() {
         $uibModal.open({
             animation: true,
@@ -57,11 +58,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 
 
+
+
 }])
 
 //////////
 .controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth) {
-    $scope.userVerified = true;
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -105,9 +107,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 $scope.users.$save();
 
                 $scope.userID = authData.uid;
+
+                $scope.userVerified = true;
             })
             .catch(function(error) {
                 //error handling (called on the promise)
+                $scope.userVerified = false;
                 console.log(error);
             })
     };
@@ -115,15 +120,19 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //Make LogOut function available to views
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
+        $scope.userVerified = false;
     };
 
     //Any time auth status updates, set the userId so we know
     Auth.$onAuth(function(authData) {
         if (authData) { //if we are authorized
             $scope.userId = authData.uid;
+            $scope.userVerified = true;
         } else {
             $scope.userId = undefined;
+            $scope.userVerified = false;
         }
+        console.log("auth changed");
     });
 
     //Test if already logged in (when page load)
@@ -135,7 +144,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     //separate signIn function
     $scope.signIn = function() {
-      console.log("signing in...");
         var promise = Auth.$authWithPassword({
             'email': $scope.newUser.email,
             'password': $scope.newUser.password
@@ -143,19 +151,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
     };
-
-    /* Write an accessible (on scope) chirp() function to save a tweet */
-    // $scope.chirp = function() {
-    //     var text = $scope.newChirp;
-    //     $scope.chirpsArray.$add({
-    //         text: text,
-    //         userID: -1,
-    //         likes: 0,
-    //         time: Firebase.ServerValue.TIMESTAMP
-    //     }).then(function() {
-    //         $scope.newChirp = "";
-    //     })
-    // };
 }])
 
 
@@ -213,6 +208,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
       var className = $scope.addClassForm.className;
       $scope.classList.$add({
         name:className,
+        institution:$scope.selectedSchool,
+        professor: $scope.addClassForm.professor,
         reviews:[],
       }).then(function() {
         $scope.addClassForm.className = "";
