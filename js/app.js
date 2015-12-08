@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap'])
+angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -45,7 +45,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 })
 
-.controller('MASTERCTRL', ['$scope', '$uibModal', function($scope, $uibModal) {
+.controller('MASTERCTRL', ['$http', '$scope', '$uibModal', function($http, $scope, $uibModal) {
 
     $scope.authInit = function() {
         $uibModal.open({
@@ -62,8 +62,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     return $scope.userVerified;
   };
 
+$http.get("../src/font-awesome.json").then(function(response){
+    $scope.fonts = response.data;
+    console.log(response.data);
+  });
 
 }])
+
 
 //////////
 .controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $uibModal) {

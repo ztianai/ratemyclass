@@ -214,9 +214,26 @@ footer {
     text-align: left;
 }
 
+.iconDiv {
+    display: inline-block;
+    width: 35px;
+    height: 35px;
+    background-color: #06037b;
+    margin: 15px;
+    border-radius: 5px;
+    text-align: center;
+    padding: 5px;
+    font-size: 20px;
+    vertical-align: middle;    
+}
 
+i {
+    color: white;
+}
 
-
+.iconDiv:hover i {
+    color: #1bd2ed;
+}
 
 
 
