@@ -1,26 +1,4 @@
-<!--This page pops up after the search so that authorised user can see name and the description of the class-->
-<!--and also leave a review-->
-
-<!--CLASS NAME-->
-
-
-<!--CLASS DESCRIPTION-->
-<div class="pageWrap">
-
-    <!--SEARCH-->
-    <div class="searchBar pull-right">
-        <input type="text" ng-model="search"/>
-        <div ng-repeat="review in reviews | filter:search "> </div>
-
-        </div>
-    </div>
-
-    </div>
-    </ul>
-
-    <!--REVIEW-->
-    <button type="submit" class = "btn btn-primary" ng-click="addReview()">Add New Comment></button>
-    <div class="review container">
+<div class="review modal-body">
         <h1>Review {{ClassName}}</h1>
         <!-- Review form -->
         <form name="reviewForm" id="review-input">
@@ -65,32 +43,3 @@
             </div>
         </form>
     </div>
-
-    <!-- Show everyone's reviews -->
-    <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
-    <!-- order by time -->
-
-    <div class="review-box" ng-repeat="review in reviews | filter: reviewFilter | orderBy:'-time'">
-            <div class="review-item">
-             
-                <div class="star">
-                    <uib-rating ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-heart-empty'" state-on="'glyphicon glyphicon-heart'"></uib-rating>
-                </div>   
-                <div class="time">{{review.time | date:'short'}}</div><br>
-                <div class="ratings">
-                <span class="details">Workload: {{review.workload}}</span><br>
-                <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
-                <span class="details"> Easiness: {{review.easiness}}</span><br>
-                </div>
-
-                Professor: {{review.prof}}<br>
-                
-                Comments: {{review.text}}<br>
-
-                Average GPA: {{review.gpa}}<br>
-
-            </div>
-        
-    </div>
-<!-- end shown results -->
-</div>
