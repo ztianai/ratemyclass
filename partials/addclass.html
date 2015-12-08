@@ -9,6 +9,12 @@
     <div class="form-group container-fluid typeahead-demo">
 
 		
+<div id="iconContainer">
+        <div class="iconDiv" ng-repeat="font in fonts" ng-class="{active : isSelected(font.name)}">
+            <i class="fa {{font.name}}" ng-click="setMaster(font.name)"></i>
+        </div>
+</div>
+
 
         <label for="className">Class Name:</label>
         <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
@@ -21,4 +27,7 @@
 
         <button type="submit" class="btn btn-primary" ng-click="addClass()">Add Review</button>
     </div>
+
+    <i id="blah" class="fa {{selected}}"></i>
+
 </form>

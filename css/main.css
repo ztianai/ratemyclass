@@ -214,6 +214,14 @@ footer {
     text-align: left;
 }
 
+
+#iconContainer {
+    overflow: scroll;
+    height: 225px;
+}
+
+#iconContainer-webkit-scrollbar { width: 0 !important }
+
 .iconDiv {
     display: inline-block;
     width: 35px;
@@ -235,7 +243,15 @@ i {
     color: #1bd2ed;
 }
 
+.active {
+    background-color:yellow;
+}
 
+
+#blah {
+    color: white;
+    background-color: blue;
+}
 
 
 

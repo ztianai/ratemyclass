@@ -196,6 +196,13 @@ $http.get("../src/font-awesome.json").then(function(response){
 .controller('addclassCtrl', ['$http', '$scope', '$firebaseArray', '$location', function($http, $scope, $firebaseArray, $location) {
     $scope.selected = undefined;
 
+$scope.isSelected = function(font) {
+    return $scope.selected === font;
+}
+$scope.setMaster = function(font) {
+    $scope.selected = font;
+}
+
 
   $http.get("../src/collegeData.json").then(function(response){
     console.log(response.data);
