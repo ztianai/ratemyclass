@@ -31,19 +31,15 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             templateUrl: "partials/addclass.html",
             controller: 'addclassCtrl'
         })
-        .state('review', {
-            url: "/review",
-            templateUrl: "partials/review.html",
-            controller: 'reviewCtrl'
-        })
         .state('help', {
             url: "/help",
             templateUrl: "partials/help.html",
             controller: 'helpCtrl'
         })
-        .state('class', {
-            url:'/{school}/{name}',
-            template:'<h1>hello</h1>'
+        .state('review', {
+            url: "/{school}/{name}",
+            templateUrl: "partials/review.html",
+            controller: 'reviewCtrl'
         })
     $urlRouterProvider.otherwise("/");
 
@@ -249,7 +245,7 @@ $scope.setMaster = function(font) {
 }])
 
 //////////////////////
-.controller('reviewCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth) {
+.controller('reviewCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
     /* define reference to your firebase app */
     var ref = new Firebase("https://probech1.firebaseio.com/");
 
@@ -269,6 +265,9 @@ $scope.setMaster = function(font) {
 
     $scope.newUser = {};
 
+    console.log($stateParams);
+
+    $scope.ClassName = $stateParams.name;
 
 
     /* Write an accessible (on scope) chirp() function to save a tweet */

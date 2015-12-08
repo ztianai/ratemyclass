@@ -1,4 +1,4 @@
-
+<div id="homePage">
 <p id="welcome">Welcome to RateMyClass!</p>
 <div id="partialHead">
     <h1>What is RateMyClass?</h1>
@@ -13,7 +13,9 @@
 	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:4 ">
 		<i class="{{obj.icon}}"></i>
 		<hr>
-		<h2>{{obj.name}}</h2>
+		<a ui-sref="review({school:obj.institution.INSTNM, name:obj.name})"><h2>{{obj.name}}</h2></a>
 	</div>	
 </div>
 
+
+</div>

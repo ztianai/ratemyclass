@@ -255,6 +255,12 @@ i {
     background-color: blue;
 }
 
+#homePage {
+    background: url('../img/background.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
 
 
 

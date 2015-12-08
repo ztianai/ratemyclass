@@ -20,7 +20,7 @@
 
     <!--REVIEW-->
     <div class="review container">
-        <h1>Review</h1>
+        <h1>Review {{ClassName}}</h1>
         <!-- Review form -->
         <form name="reviewForm" id="review-input">
 
@@ -53,7 +53,7 @@
     <!-- order by time -->
     <div class="review-box" ng-repeat="review in reviews | filter:search | orderBy:'-time'">
 
-        <div><span class="time">{{review.time}}</span></div>
+        <div><span class="time">{{review.time | date:'short'}}</span></div>
         <!-- Use an expression to show the text, gpa,workload, helpfulness, easiness of the tweet -->
         <div class="reviewP">
             <uib-rating ng-model="review.star" max="max" readonly="!isReadonly"></uib-rating>

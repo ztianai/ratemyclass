@@ -34,9 +34,10 @@
 					<ul>
 						<li ui-sref="home">home</li>
 						<li ui-sref="search">search</li>
+						<li ui-sref="review">review</li>
 						<li ui-sref="addClass" ng-show="userVerified">add class</li>
-						<li class="pull-right"><a ui-sref="review">leave a review</a></li>
-						<li id="navAuth" ng-show="!userVerified" ng-click="authInit()">login/signup</li>
+						
+						<li class="pull-right"id="navAuth" ng-show="!userVerified" ng-click="authInit()">login/signup</li>
 					</ul>
 				    <div class="btn-group" uib-dropdown is-open="status.isopen" ng-show="userVerified">
 				      <button id="single-button" type="button" class="btn btn-primary" uib-dropdown-toggle ng-disabled="disabled">
