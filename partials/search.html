@@ -10,7 +10,7 @@
     <div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | filter: search">
         <i class="{{obj.icon}}"></i>
         <hr>
-        <a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, id: 1234})"><h2>{{obj.name}}</h2></a>
+        <a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, id: obj})"><h2>{{obj.name}}</h2></a>
     </div>  
 </div>
 

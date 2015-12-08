@@ -39,8 +39,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         .state('review', {
             url: "/{school}/{name}",
             templateUrl: "partials/review.html",
-            controller: 'reviewCtrl',
-            id: "{id}"
+            controller: 'reviewCtrl'
         })
     $urlRouterProvider.otherwise("/");
 
@@ -63,10 +62,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     return $scope.userVerified;
   };
 
-$http.get("../src/font-awesome.json").then(function(response){
-    $scope.fonts = response.data;
-    console.log(response.data);
-  });
 
 }])
 
@@ -204,6 +199,12 @@ $http.get("../src/font-awesome.json").then(function(response){
         $scope.selected = font;
     }
 
+    $http.get("../src/font-awesome.json").then(function(response){
+    $scope.fonts = response.data;
+    console.log(response.data);
+  });
+
+
 
   $http.get("../src/collegeData.json").then(function(response){
     console.log(response.data);
@@ -299,8 +300,12 @@ $http.get("../src/font-awesome.json").then(function(response){
 
 
     /* Write an accessible (on scope) chirp() function to save a tweet */
-    $scope.review = function() {
+    $scope.submitReview = function() {
+                    console.log("added review");
+
         $scope.reviews.$add({
+                school: $stateParams.school,
+                className: $stateParams.name,
                 star: $scope.rate,
                 prof: $scope.prof,
                 text: $scope.newReview,
