@@ -254,19 +254,14 @@ i {
     color: white;
     background-color: blue;
 }
-
-
 .review-box{
     margin:2em;
     }
-
 #homePage {
     background: url('../img/background.jpeg');
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
-
-
 }
 
 .review-item {
@@ -278,6 +273,10 @@ i {
 .ratings {
     float:left;
     background-color: #729f98;
+    padding: 1em;
+}
+.comment {
+margin-top:2em;
 }
 
 
@@ -288,7 +287,6 @@ i {
 .star {
     float: left;
 }
-
 
 .details {
     margin-top: 1em;
