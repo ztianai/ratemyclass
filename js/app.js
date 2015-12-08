@@ -290,7 +290,7 @@ $scope.setMaster = function(font) {
     }
     $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
     $scope.gpa = '';
-    $scope.workloads = ['1-Not Much Work', '2', '3', '4', '5-Super Heavy Work'];
+    $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
     $scope.workload = '';
     $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
     $scope.helpfulness = '';
