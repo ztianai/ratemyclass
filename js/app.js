@@ -298,6 +298,47 @@ $http.get("../src/font-awesome.json").then(function(response){
 
 
 
+    /* Write an accessible (on scope) chirp() function to save a tweet */
+    $scope.review = function() {
+        $scope.reviews.$add({
+                star: $scope.rate,
+                prof: $scope.prof,
+                text: $scope.newReview,
+                gpa: $scope.gpa,
+                workload: $scope.workload,
+                helpfulness: $scope.helpfulness,
+                easiness: $scope.easiness,
+                time: Firebase.ServerValue.TIMESTAMP,
+                quarter: $scope.quarter
+            })
+            .then(function() {
+                $scope.newReview = '';
+            })
+    }
+    $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    $scope.gpa = '';
+    $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
+    $scope.workload = '';
+    $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    $scope.helpfulness = '';
+    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    $scope.easiness = '';
+    // $(function() {
+    //   $("#slider").slider({
+    //     value: 0,
+    //     min: 0,
+    //     max: 5,
+    //     step: 1,
+    //     slide: function(event, ui){
+    //       $("#amount").val(ui.value);
+    //     }
+    //   });
+    //   $("#amount").val($("#slider").slider("value")); 
+    // })
+    $scope.rate = 0;
+    $scope.max = 5;
+
+
 
 
 }])

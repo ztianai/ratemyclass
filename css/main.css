@@ -241,6 +241,11 @@ i {
     color: white;
 }
 
+.glyphicon{
+    font-size: 30px;
+    color: #aa863a;
+}
+
 .iconDiv:hover i {
     color: #1bd2ed;
 }
