@@ -237,7 +237,7 @@ i {
 }
 
 .glyphicon{
-    font-size: 30px;
+    font-size: 15px;
     color: #aa863a;
 }
 
@@ -258,6 +258,7 @@ i {
 
 .review-box{
     margin:2em;
+    }
 
 #homePage {
     background: url('../img/background.jpeg');
@@ -267,8 +268,6 @@ i {
 
 
 }
-
-
 
 .review-item {
     margin: 0 auto;
