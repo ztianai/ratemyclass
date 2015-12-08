@@ -68,24 +68,28 @@
     <!-- Show everyone's reviews -->
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
-    <div class="review-box" ng-repeat="review in reviews | filter:{id} | orderBy:'-time'">
 
-        <div><span class="time">{{review.time | date:'short'}}</span></div>
-        <!-- Use an expression to show the text, gpa,workload, helpfulness, easiness of the tweet -->
-        <div class="reviewP">
-            <uib-rating ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-heart-empty'" state-on="'glyphicon glyphicon-heart'"></uib-rating>
-        </div>
-        <div class="reviewP">Professor: {{review.prof}}</div>
-        <div class="reviewP">Quarter: {{review.quarter}}</div>
-        <div class="reviewP">gpa: {{review.gpa}}</div>
-        <div class="reviewP">Workload: {{review.workload}}</div>
-        <div class="reviewP">Helpfulness: {{review.helpfulness}}</div>
-        <div class="reviewP">Easiness: {{review.easiness}}</div>
-        <div class="reviewP">{{review.text}}</div>
+    <div class="review-box" ng-repeat="review in reviews | filter:search | orderBy:'-time'">
+            <div class="review-item">
+             
+                <div class="star">
+                    <uib-rating ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-heart-empty'" state-on="'glyphicon glyphicon-heart'"></uib-rating>
+                </div>   
+                <div class="time">{{review.time | date:'short'}}</div><br>
+                <div class="ratings">
+                <span class="details">Workload: {{review.workload}}</span><br>
+                <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
+                <span class="details"> Easiness: {{review.easiness}}</span><br>
+                </div>
+
+                Professor: {{review.prof}}<br>
+                
+                Comments: {{review.text}}<br>
+
+                Average GPA: {{review.gpa}}<br>
+
+            </div>
         
-        <br>
-        <br>
-
     </div>
 <!-- end shown results -->
 </div>
