@@ -48,7 +48,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('MASTERCTRL', ['$http', '$scope', '$uibModal', function($http, $scope, $uibModal) {
 
     $scope.authInit = function() {
-        $uibModal.open({
+        $scope.uibModalInstance = $uibModal.open({
             animation: true,
             templateUrl: 'partials/auth.html',
             controller: 'authCtrl',
@@ -67,7 +67,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 //////////
-.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $uibModal) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth, $uibModalInstance) {
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -91,6 +91,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.signUp = function() {
         console.log("creating user " + $scope.newUser.email);
+
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
                 'email': $scope.newUser.email,
@@ -113,6 +114,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 $scope.userID = authData.uid;
 
                 $scope.changeVerification(true);
+
+
 
             })
             .catch(function(error) {
@@ -151,10 +154,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         var promise = Auth.$authWithPassword({
             'email': $scope.newUser.email,
             'password': $scope.newUser.password
+        }).then(function() {
+            $scope.uibModalInstance.dismiss();
         });
-        return promise; //return promise so we can *chain promises*
+       return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
-    };
+    }
 }])
 
 
