@@ -74,7 +74,7 @@
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
 
-    <div class="review-box" ng-repeat="review in reviews | filter: reviewFilter | orderBy:'-time'">
+    <div class="review-box" ng-repeat="review in reviews | filter: {className:ClassName, school: SchoolName}:true | orderBy:'-time'">
             <div class="review-item">
                 <div class="star">
                     <uib-rating ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-heart-empty'" state-on="'glyphicon glyphicon-heart'"></uib-rating>
