@@ -43,7 +43,7 @@
                     <uib-rating ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-heart-empty'" state-on="'glyphicon glyphicon-heart'"></uib-rating>
                 </div>
                 <div class="time">{{review.time | date:'short'}}</div><br>
-               <div class="col-sm-4" name="ratings">
+               <div class="col-sm-3" id="ratings">
                     <span class="details">Workload: {{review.workload}}</span><br>
                     <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
                     <span class="details">Easiness: {{review.easiness}}</span><br>
@@ -51,7 +51,7 @@
                     <span class="details">Quarter: {{review.quarter}} </span><br>
                     <span class="details">Average GPA: {{review.gpa}}</span><br>
                 </div>
-                <div class="col-sm-4" name="comment">{{review.text}}</div>
+                <div class="col-sm-6" name="comment">{{review.text}}</div>
 
             </div>
     </div>
