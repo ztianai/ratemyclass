@@ -30,7 +30,7 @@
 	<body ng-controller="MASTERCTRL">
 		<div id="wrapper">
 			<header  ng-controller="authCtrl" >
-				<nav>
+				<nav class="navBar">
 					<ul>
 						<li ui-sref="home">home</li>
 						<li ui-sref="search">search</li>
@@ -61,7 +61,9 @@
 			<div id="main">
 				<div ui-view></div>
 			</div>
-			<footer>
+
+
+			<footer class="footer">
 				<hr>
 				<ul>
 					<li ui-sref="about">about</li>
