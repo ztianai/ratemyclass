@@ -256,9 +256,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     // // $scope.newUser = {};
 
-    // // console.log($stateParams);
+    console.log($stateParams);
 
-    // // $scope.ClassName = $stateParams.name;
+    $scope.ClassName = $stateParams.name;
 
 
     // // /* Write an accessible (on scope) chirp() function to save a tweet */
