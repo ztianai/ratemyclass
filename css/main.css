@@ -110,30 +110,32 @@ footer li {
     color: white;
     display: inline-block;
     margin: 20px;
-    text-align: center;
-    width: 200px;
-    height: 250px;
-    background-color: #F4D00C;
+    text-align: left;
+    width: 225px;
+    height: 50px;
+    background-color: #4b0082;
     overflow: hidden;
-    padding-top: 0px;
     border-radius: 25px;
-
+    font-size: 20px;
 }
 
-
+.homePreview a {
+    margin-left: 10px;
+    color: white;
+    text-decoration: none;
+}
 
 /*.footer {
 background-color:004C70;
 } */
 
-.homePreview hr {
-    width: 90%;
-}
 
-.homePreview img {
-    width: 80%;
-    margin: auto;
-    display: block;
+.homePreview i {
+    font-size: 25px;
+    display: inline-block;
+    left: 5px;
+    margin-top: 12px;
+    margin-left: 12px;
 }
 
 .text {
@@ -337,6 +339,7 @@ i {
 .time {
     float: right;
 }
+
 
 .star {
     float: left;
