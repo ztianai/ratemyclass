@@ -23,30 +23,32 @@ html, body {
     font-weight: bold;
 }
 
-#searchForm, #navAuth {
+#searchForm {
     float: right;
+    padding: 3em;
 }
 
-#partialHead, h3 {
+#partialHead {
     margin-left: auto;
     margin-right: auto;
-    width: 50%;
+    width: 65%;
+    color: #26033A;
 }
 
 /* Navigation */
 nav {
-    background-color: rgba(24, 28, 34, 0.8);
+    background-color: #004C70;
     font-size: 20px;
-    font-family: Lato, 'Helvetica Neue', Helvetica, sans-serif;
+    font-family: font-family: "Lucida Console", Monaco, monospace;
     font-variant: small-caps;
     padding-top: 0.5em;
     position: fixed;
     width: 100%;
     height: 50px;
-}
 
+}
 ul {
-    text-align: center;
+    text-align: left;
     list-style: none;
 }
 
@@ -61,21 +63,36 @@ li:hover {
     cursor: pointer;
 }
 
+
 /* Footer */
+
+
 footer {
     display: block;
-    bottom: 0px;
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    height: 80px;
+    background-color: #004C70
 }
 footer ul {
     text-align: left;
     width: 50%
+
 }
 
 footer li {
-    color: black;
+    color: white;
+    font-family: "Lucida Console", Monaco, monospace;
 }
 
+
+.recReviewed {
+    font-size: 20px;
+    text-align: center;
+    color: white;
+    font-family: "Lucida Console", Monaco, monospace;
+}
 /* Styles */
 #homeHR {
     width: 70%;
@@ -86,7 +103,7 @@ footer li {
     padding: 0 150px;
     padding-top: 20px;
 }
-
+/* classes on the main page */
 .homePreview {
     color: white;
     display: inline-block;
@@ -94,10 +111,18 @@ footer li {
     text-align: center;
     width: 200px;
     height: 250px;
-    background-color: purple;
+    background-color: #F4D00C;
     overflow: hidden;
-    padding-top: 10px;
+    padding-top: 0px;
+    border-radius: 25px;
+
 }
+
+
+
+/*.footer {
+background-color:004C70;
+} */
 
 .homePreview hr {
     width: 90%;
@@ -124,6 +149,7 @@ html, body {
 #wrapper {
     min-height: 100%;
     position: relative;
+    background-color: white;
 }
 
 #main {
@@ -135,6 +161,7 @@ footer {
     bottom: 0;
     width: 100%;
     height: 80px;
+    background-color: #004C70
 
 }
 
@@ -210,7 +237,16 @@ footer {
 }
 
 #searchContainer {
+  padding: 7em;
 }
+.inputSearch {
+  padding: 4px;
+  border: solid 5px #c9c9c9;
+  transition: border 0.3s;
+  }
+  .inputSearch:focus {
+   border: solid 5px #969696;
+  }
 
 
 #iconContainer {
@@ -266,29 +302,33 @@ i {
 
 .review-box{
     margin:2em;
+    display: inline;
     }
 #homePage {
-    background: url('../img/background.jpeg');
+   /* background: url('../img/background.jpeg'); */
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
 }
-
+/*review page*/
 .review-item {
-    margin: 0 auto;
+    min-height: 12em;
+    margin: 5 auto;
     width:90%;
-    background-color: #f0eceb;
+    background-color:#F4D00C;
+    border-color:#004C70;
+        border-style: solid;
+        border-width: small;
+
 }
 
-.ratings {
+ #ratings {
     float:left;
-    background-color: #729f98;
     padding: 1em;
+    border-color:black;
+    border-style: solid;
+    border-width: small;
 }
-.comment {
-margin-top:2em;
-}
-
 
 .time {
     float: right;
@@ -302,3 +342,5 @@ margin-top:2em;
     margin-top: 1em;
     padding-right: 1em;
 }
+
+/*search */

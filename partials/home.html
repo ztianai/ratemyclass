@@ -1,5 +1,5 @@
 <div id="homePage">
-<p id="welcome">Welcome to RateMyClass!</p>
+<p id="welcome"></p>
 <div id="partialHead">
     <h1>What is RateMyClass?</h1>
     <p>Find out what others say about courses that you are interested in!<br>
@@ -8,7 +8,7 @@
 
 <hr id="homeHR">
 
-<p>Recently Updated:</p>
+<p class="recReviewed">Recently Reviewed:</p>
 <div id="previewContainer">
 	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:4 ">
 		<i class="{{obj.icon}}"></i>
