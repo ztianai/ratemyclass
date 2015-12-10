@@ -67,7 +67,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 //////////
-.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', function($scope, $firebaseObject, $firebaseAuth, $uibModalInstance) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', function($scope, $firebaseObject, $firebaseAuth, $uibModalInstance, $location) {
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -129,6 +129,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
             $scope.changeVerification(false);
+            $location.path('/');
         };
 
     //Any time auth status updates, set the userId so we know

@@ -101,9 +101,8 @@ footer li {
 }
 
 #previewContainer {
-    width: 100%;
-    padding: 0 150px;
-    padding-top: 20px;
+    padding: 0 7em;
+    text-align: center;
 }
 /* classes on the main page */
 .homePreview {
