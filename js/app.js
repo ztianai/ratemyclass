@@ -367,7 +367,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
-.controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
+.controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
@@ -434,9 +434,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
     $scope.gpa = '';
-    $scope.workloads = ['1-Not Much Work', '2-Litte Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
+    $scope.workloads = ['1-Not Much Work', '2-Little Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
     $scope.workload = '';
-    $scope.helpfulnesses = ['1-Not Useful', '2', '3', '4', '5-Gain Really Helpful Skills'];
+    $scope.helpfulnesses = ['1-Not Useful', '2-Somewhat Useful', '3-Basic Skills', '4-Worth Learning', '5-Gain Really Helpful Skills'];
     $scope.helpfulness = '';
     $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
     $scope.easiness = '';
@@ -460,6 +460,7 @@ $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
             .then(function() {
                 $scope.newReview = '';
             })
+        $uibModalInstance.dismiss('closing');
 
     }
     
