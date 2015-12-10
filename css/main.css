@@ -316,29 +316,32 @@ i {
 }
 /*review page*/
 .review-item {
-    min-height: 12em;
+    font-size: 15px;
+    font-family: font-family: "Lucida Console", Monaco, monospace;
+    min-height: 13em;
     margin: 5 auto;
     width:90%;
     background-color:#EEE;
-    border-color:#004C70;
-    border-style: solid;
+    border-color:#006dcc;
+    border-style: outset;
     border-width: small;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
+
 }
 
  .review-item #ratings {
-    float:left;
+       float:left;
+       border-right:outset #006dcc;
 
    }
 .time {
     float: right;
 }
 
-
 .star {
-    float: left;
+
 }
 
 .details {
