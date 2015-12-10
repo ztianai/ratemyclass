@@ -67,7 +67,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 //////////
-.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', function($scope, $firebaseObject, $firebaseAuth, $uibModalInstance, $location) {
+.controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $location, $uibModal) {
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -125,6 +125,19 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             })
     };
 
+    $scope.changePassword = function() {
+        $scope.uibModalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'partials/changePassword.html',
+            controller: 'changePasswordCtrl',
+            scope: $scope
+        });
+    }
+
+    $scope.resetPassword = function() {
+
+    }
+
     //Make LogOut function available to views
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
@@ -160,6 +173,34 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
        return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
+    }
+}])
+
+.controller('changePasswordCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+
+    $scope.changePass = function() {
+        ref.changePassword({
+          email: $scope.email,
+          oldPassword: $scope.oldPass,
+          newPassword: $scope.newPass
+        }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_PASSWORD":
+                console.log("The specified user account password is incorrect.");
+                break;
+              case "INVALID_USER":
+                console.log("The specified user account does not exist.");
+                break;
+              default:
+                console.log("Error changing password:", error);
+            }
+          } else {
+            console.log("User password changed successfully!");
+            $scope.uibModalInstance.dismiss();
+          }
+        });
     }
 }])
 

@@ -345,6 +345,16 @@ i {
 
 }
 
+#changePassForm {
+    height: 300px;
+    text-align: center;
+}
+
+#changePassForm input[type=text] {
+    margin: 20px auto;
+    display: inline-block;
+}
+
 .details {
     margin-top: 1em;
     padding-right: 1em;
