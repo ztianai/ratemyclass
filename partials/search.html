@@ -9,7 +9,7 @@
 <div id="searchContainer">
     <div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | filter: search">
         <i class="{{obj.icon}}"></i>
-        <a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, id: obj})">{{obj.name}}</a>
+        <a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, institution:obj.institution})">{{obj.name}}</a>
     </div>  
 </div>
 
