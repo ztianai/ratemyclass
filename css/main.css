@@ -319,8 +319,10 @@ i {
     width:90%;
     background-color:#F4D00C;
     border-color:#004C70;
-        border-style: solid;
-        border-width: small;
+    border-style: solid;
+    border-width: small;
+    margin-left: auto;
+    margin-right: auto;
 
 }
 
