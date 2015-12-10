@@ -39,7 +39,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         .state('review', {
             url: "/{school}/{name}",
             templateUrl: "partials/review.html",
-            controller: 'reviewCtrl'
+            controller: 'reviewCtrl',
+            params: { institution: "{institution}", }
         })
     $urlRouterProvider.otherwise("/");
 
@@ -240,6 +241,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var rev = ref.child('reviews');
     $scope.reviews = $firebaseArray(rev);
 
+
     console.log("name: " + $stateParams.name);
     console.log("school: " + $stateParams.school);
 
@@ -247,6 +249,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.SchoolName = $stateParams.school;
     $scope.ClassName = $stateParams.name;
+    $scope.Institution = $stateParams.institution;
+
 
     $scope.addReview = function(){
         var modalInstance = $uibModal.open({
