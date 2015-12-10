@@ -20,7 +20,7 @@
     <!--REVIEW-->
     <div class="container">
         <h1>Review {{ClassName}}</h1>
-        <button type="submit" class = "btn btn-primary" ng-click="addReview()">Add New Comment : )</button>   
+        <button type="submit" class = "btn btn-primary" ng-click="addReview()" ng-show="userVerified">Add New Comment</button>   
     </div>
     <hr>
     <p>Address: {{Institution.ADDR}}</p>

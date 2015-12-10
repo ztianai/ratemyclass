@@ -62,6 +62,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     return $scope.userVerified;
   };
 
+  $scope.isVerified = function() {
+    return $scope.userVerified;
+  }
+
 
 }])
 
@@ -311,16 +315,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var rev = ref.child('reviews');
     $scope.reviews = $firebaseArray(rev);
 
-
-    console.log("name: " + $stateParams.name);
-    console.log("school: " + $stateParams.school);
-
     $scope.reviewFilter = $stateParams.name && $stateParams.school;
 
     $scope.SchoolName = $stateParams.school;
     $scope.ClassName = $stateParams.name;
     $scope.Institution = $stateParams.institution;
 
+    $scope.userVerified = $scope.isVerified();
 
     $scope.addReview = function(){
         var modalInstance = $uibModal.open({
