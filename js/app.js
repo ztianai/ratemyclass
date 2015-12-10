@@ -135,7 +135,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 
     $scope.resetPassword = function() {
-
+        $scope.uibModalInstance = $uibModal.open({
+            animation: true,
+            templateUrl: 'partials/resetPassword.html',
+            controller: 'resetPasswordCtrl',
+            scope: $scope
+        });
     }
 
     //Make LogOut function available to views
@@ -198,6 +203,29 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             }
           } else {
             console.log("User password changed successfully!");
+            $scope.uibModalInstance.dismiss();
+          }
+        });
+    }
+}])
+
+.controller('resetPasswordCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+
+    $scope.resetPass = function() {
+        ref.resetPassword({
+          email: $scope.email
+        }, function(error) {
+          if (error) {
+            switch (error.code) {
+              case "INVALID_USER":
+                console.log("The specified user account does not exist.");
+                break;
+              default:
+                console.log("Error resetting password:", error);
+            }
+          } else {
+            console.log("Password reset email sent successfully!");
             $scope.uibModalInstance.dismiss();
           }
         });
