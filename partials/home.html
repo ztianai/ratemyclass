@@ -10,7 +10,7 @@
 
 <p class="recReviewed">Recently Reviewed:</p>
 <div id="previewContainer">
-	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:4 ">
+	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:8 ">
 		<i class="{{obj.icon}}"></i>
 		<a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, id:obj})">{{obj.name}}</a>
 	</div>	
