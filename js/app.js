@@ -261,6 +261,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('mapCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
+    angular.extend($scope, {
+                usa: {
+                    lat: 41,
+                    lng: -100,
+                    zoom: 4
+                }
+            });
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
