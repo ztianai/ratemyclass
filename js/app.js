@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize'])
+angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize', 'ngSanitize', 'leaflet-directive'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -35,6 +35,11 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             url: "/help",
             templateUrl: "partials/help.html",
             controller: 'helpCtrl'
+        })
+        .state('map', {
+            url: "/map",
+            templateUrl: "partials/map.html",
+            controller: 'mapCtrl'
         })
         .state('review', {
             url: "/{school}/{name}",
@@ -251,6 +256,11 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 .controller('aboutCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+}])
+
+.controller('mapCtrl', ['$scope', function($scope) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
