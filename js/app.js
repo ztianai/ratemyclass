@@ -312,12 +312,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.addClass = function() {
       var className = $scope.addClassForm.className;
+      var classDescr = $scope.addClassForm.classDescr;
       $scope.classList.$add({
         icon: "fa " + $scope.selected,
         name:className,
         institution:$scope.selectedSchool,
         professor: $scope.addClassForm.professor,
-        timestamp: Firebase.ServerValue.TIMESTAMP
+        timestamp: Firebase.ServerValue.TIMESTAMP,
+        descr:classDescr
     }).then(function() {
         $scope.addClassForm.className = "";
         $location.path('/');
@@ -349,6 +351,23 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         })
     }
     $scope.max = 5;
+    angular.extend($scope, {
+                osloCenter: {
+                    lat: $stateParams.institution.LATITUDE,
+                    lng: $stateParams.institution.LONGITUD,
+                    zoom: 14
+                },
+                markers: {
+                    osloMarker: {
+                        lat: $stateParams.institution.LATITUDE,
+                        lng: $stateParams.institution.LONGITUD,
+                        focus: true,
+                        draggable: false
+                    }
+                }
+            });
+   // var marker = L.marker([$stateParams.institution.LATITUDE, $stateParams.institution.LONGITUD]).addTo(map);
+    
 }])
 
 
