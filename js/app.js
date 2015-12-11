@@ -338,6 +338,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.ClassName = $stateParams.name;
     $scope.Institution = $stateParams.institution;
 
+    console.log($stateParams.institution);
     $scope.userVerified = $scope.isVerified();
 
     $scope.addReview = function(){
