@@ -366,7 +366,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                     }
                 }
             });
-   // var marker = L.marker([$stateParams.institution.LATITUDE, $stateParams.institution.LONGITUD]).addTo(map);
     
 }])
 

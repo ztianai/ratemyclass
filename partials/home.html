@@ -12,7 +12,7 @@
 <div id="previewContainer">
 	<div class="homePreview" ng-repeat="obj in classList| orderBy: '-timestamp' | limitTo:8 ">
 		<i class="{{obj.icon}}"></i>
-		<a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, institution:obj.institution})">{{obj.name}}</a>
+		<a ui-sref="review({school:obj.institution.INSTNM, name:obj.name, institution:obj.institution})"><b>{{obj.name}}</b><p id="SchoolName">{{obj.institution.INSTNM}}</p></a>
 	</div>	
 </div>
 
