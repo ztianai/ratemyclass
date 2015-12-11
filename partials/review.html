@@ -44,7 +44,7 @@
                                 state-on="'glyphicon glyphicon-heart'"></uib-rating>
                 <!--</div>-->
                 <div class="time">{{review.time | date:'short'}}</div><br>
-                <div class="col-sm-3" id="ratings">
+                <div class="col-sm-4" id="ratings">
                     <span class="details">Workload: {{review.workload}}</span><br>
                     <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
                     <span class="details">Easiness: {{review.easiness}}</span><br>
@@ -53,6 +53,7 @@
                     <span class="details">Average GPA: {{review.gpa}}</span><br>
                 </div>
                 <div class="col-sm-6" name="comment">{{review.text}}</div>
+                <i class="fa fa-cog" ng-show="review.user == ID" ng-click="editReview(review)"></i>
 
             </div>
     </div>
