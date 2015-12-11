@@ -92,7 +92,7 @@ footer li {
 .recReviewed {
     font-size: 20px;
     text-align: center;
-    color: white;
+   /* color: white;*/
     font-family: "Lucida Console", Monaco, monospace;
 }
 /* Styles */

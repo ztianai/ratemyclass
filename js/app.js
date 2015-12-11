@@ -318,8 +318,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         name:className,
         institution:$scope.selectedSchool,
         professor: $scope.addClassForm.professor,
-        timestamp: Firebase.ServerValue.TIMESTAMP,
-        descr:classDescr
+        timestamp: Firebase.ServerValue.TIMESTAMP
     }).then(function() {
         $scope.addClassForm.className = "";
         $location.path('/');
