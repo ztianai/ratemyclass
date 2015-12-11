@@ -247,6 +247,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('searchCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/");
     $scope.classList = $firebaseArray(ref);
+
+    $scope.filterResults = function() {
+        $scope.customFilter = $scope.classSearch && $scope.schoolSearch;
+        console.log($scope.customFilter);
+    }
+
+
 }])
 
 .controller('aboutCtrl', ['$scope', function($scope) {
