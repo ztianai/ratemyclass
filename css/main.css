@@ -286,6 +286,9 @@ i {
     font-size: 1.5em;
     color: #aa863a;
 }
+#starReview{
+    margin-left: 1em;
+}
 
 .iconDiv:hover i {
     color: #1bd2ed;
