@@ -36,7 +36,8 @@
         </div>
         </div>
         <br>
-        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required></textarea>
+        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required ng-maxlength="300"></textarea>
+        <p class="help-block" ng-show="editReviewForm.text.$error.maxlength">300 characters limit!</p>
         <br>
 
             <div class="form-group send-review">
