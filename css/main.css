@@ -45,7 +45,7 @@ nav {
     position: fixed;
     width: 100%;
     height: 50px;
-    z-index: 1;
+    z-index: 99999;
 
 }
 ul {
@@ -335,12 +335,13 @@ h3{
     margin: 5 auto;
     width:90%;
     background-color:#EEE;
-    border-color:#006dcc;
+
     border-style: outset;
     border-width: small;
     border-radius: 10px;
     margin-left: auto;
     margin-right: auto;
+    overflow: hidden;
 
 }
 
