@@ -222,12 +222,12 @@ footer {
     margin-left: auto;
     margin-right: auto;
     width: 20%;
+    padding: 10px;
 }
 
 #comments {
     height: 200px;
 }
-
 
 
 
@@ -387,7 +387,7 @@ text-align:center;
     float: right;
 }
 
- @media screen and (max-width:768px){
+ /*@media screen and (max-width:768px){
      ul{
          margin-left: -40px;
      }
@@ -398,4 +398,26 @@ text-align:center;
  
  
      }
- }
+ } */
+
+@media screen and (max-width:768px){
+
+#contactButtons {
+
+    margin-right: auto;
+    width: 90%;
+    padding-bottom: 20px;
+    margin-left:80px;
+
+    }
+}
+
+
+@media screen and (min-width:768px){
+
+#contactButtons {
+    width: 30%;
+    padding-bottom: 20px
+
+    }
+}
