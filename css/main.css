@@ -341,9 +341,15 @@ i {
 
 }
 
+.tab{
+    margin-left: 40px;
+    font-size: 18px;
+}
  .review-item #ratings {
        float:left;
-       border-right:outset #006dcc;
+       border-bottom-style:outset;
+       border-bottom-color: white;
+       border-bottom-width: 90%;
 
    }
 .time {
