@@ -387,7 +387,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
     $scope.rate = 0;
     $scope.max = 5;
-<<<<<<< HEAD
 
     $scope.modifyReview = function(reviewToEdit) {
         console.log(reviewToEdit);
@@ -412,7 +411,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 
-=======
+
     angular.extend($scope, {
                 osloCenter: {
                     lat: $stateParams.institution.LATITUDE,
@@ -429,7 +428,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 }
             });
     
->>>>>>> ce978f0bad53631e347afda4e6646c89a87a73db
 }])
 
 
