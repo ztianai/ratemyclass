@@ -1,3 +1,4 @@
+<<<<<<< HEAD
     /* Imports Bootstrap functions and Font Awesome functions */
     @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css');
     @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css');
@@ -381,10 +382,15 @@
 
     /*search */
 
-
-
-    @media screen and (max-width:768px){
-        ul{
-            margin-left: -40px;
-        }
+@media screen and (max-width:768px){
+    ul{
+        margin-left: -40px;
     }
+    .review-item {
+    font-size: 13px;
+
+    min-height: 15em;
+
+
+    }
+}
