@@ -398,11 +398,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //$scope.review = $scope.reviewsToEdit.
     // console.log($scope.review);
 
+    console.log($scope.reviewEdit.prof);
 
 
-    $scope.PROF = $scope.reviewEdit.prof;
+    $scope.prof = $scope.reviewEdit.prof;
     $scope.RATE = $scope.reviewEdit.star;
-    $scope.QUARTER = $scope.reviewEdit.quarter;
+    $scope.quarter = $scope.reviewEdit.quarter;
     $scope.helpfulness = $scope.reviewEdit.helpfulness;
     $scope.workload = $scope.reviewEdit.workload;
     $scope.gpa = $scope.reviewEdit.gpa;
@@ -417,6 +418,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.max = 5;
 
     $scope.modifyReview = function() {
+
+        console.log($scope.prof);
+
         $scope.review.school = $scope.reviewEdit.school;
         $scope.review.className = $scope.reviewEdit.className;
         $scope.review.star = $scope.RATE;
