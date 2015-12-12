@@ -92,7 +92,7 @@ footer li {
 .recReviewed {
     font-size: 20px;
     text-align: center;
-    color: white;
+   /* color: white;*/
     font-family: "Lucida Console", Monaco, monospace;
 }
 /* Styles */
@@ -110,12 +110,16 @@ footer li {
     display: inline-block;
     margin: 20px;
     text-align: left;
-    width: 225px;
-    height: 50px;
+    width: 250px;
+    height: 100px;
     background-color: #4b0082;
     overflow: hidden;
     border-radius: 25px;
     font-size: 20px;
+}
+#SchoolName {
+    padding-left: 10px;
+    font-size: 15px;
 }
 
 .homePreview a {
@@ -359,5 +363,15 @@ i {
     margin-top: 1em;
     padding-right: 1em;
 }
+#phoneIcon{
+    color: blue;
+}
 
+#resetPassword{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#resetPasswordBox{
+    width: 100%;
+}
 /*search */

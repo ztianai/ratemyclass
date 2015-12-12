@@ -266,6 +266,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('mapCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
+    angular.extend($scope, {
+                usa: {
+                    lat: 41,
+                    lng: -100,
+                    zoom: 4
+                }
+            });
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
@@ -310,6 +317,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.addClass = function() {
       var className = $scope.addClassForm.className;
+      var classDescr = $scope.addClassForm.classDescr;
       $scope.classList.$add({
         icon: "fa " + $scope.selected,
         name:className,
@@ -335,6 +343,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.ClassName = $stateParams.name;
     $scope.Institution = $stateParams.institution;
 
+    console.log($stateParams.institution);
     $scope.userVerified = $scope.isVerified();
     $scope.ID = $scope.getUserID();
 
@@ -378,6 +387,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
     $scope.rate = 0;
     $scope.max = 5;
+<<<<<<< HEAD
 
     $scope.modifyReview = function(reviewToEdit) {
         console.log(reviewToEdit);
@@ -402,6 +412,24 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
 
+=======
+    angular.extend($scope, {
+                osloCenter: {
+                    lat: $stateParams.institution.LATITUDE,
+                    lng: $stateParams.institution.LONGITUD,
+                    zoom: 14
+                },
+                markers: {
+                    osloMarker: {
+                        lat: $stateParams.institution.LATITUDE,
+                        lng: $stateParams.institution.LONGITUD,
+                        focus: true,
+                        draggable: false
+                    }
+                }
+            });
+    
+>>>>>>> ce978f0bad53631e347afda4e6646c89a87a73db
 }])
 
 

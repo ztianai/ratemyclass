@@ -19,18 +19,26 @@
 
     <!--REVIEW-->
     <div class="container">
-        <h1>Review {{ClassName}}</h1>
-        <button type="submit" class = "btn btn-primary" ng-click="addReview()" ng-show="userVerified">Add New Comment</button>   
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <h1>{{ClassName}}</h1>
+            <h3>@ <b>{{Institution.INSTNM}}</b></h3>
+            <h4>Address: {{Institution.ADDR}} {{Institution.CITY}} {{Institution.STABBR}} {{Institution.ZIP}}</h4>
+            <h4><a href="https://{{Institution.WEBADDR}}">Official Site</a></h4>
+            <h4><i class="fa fa-phone" id="phoneIcon"></i><a href="tel:{{Institution.GENTELE}}"> {{Institution.GENTELE}}</a></h4>
+            <button type="submit" class = "btn btn-primary" ng-click="addReview()" ng-show="userVerified">Add New Comment</button> 
+        </div>  
+        <div class="col-lg-6 col-md-6 col-sm-6">
+            <br>
+            <div id="partialHead"></div>
+
+            <div>
+            <leaflet markers="markers" center="osloCenter" width="100%" height="250px"></leaflet>
+            </div>
+        </div>
     </div>
-    <hr>
-    <p>Address: {{Institution.ADDR}}</p>
-    <p>Application URL: {{Institution.APPLURL}}</p>
-    <p>President: {{Institution.CHFNM}}</p>
-    <p>City: {{Institution.CITY}}</p>
-
 
     <hr>
-        
+
 
     <!-- Show everyone's reviews -->
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
