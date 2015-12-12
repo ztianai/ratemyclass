@@ -42,12 +42,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             controller: 'mapCtrl'
         })
         .state('review', {
-            url: "/{school}/{name}",
+            url: "/{school}/{name}/{id}",
             templateUrl: "partials/review.html",
-            controller: 'reviewCtrl',
-            params: {
-                institution: "{institution}",
-            }
+            controller: 'reviewCtrl'
         })
     $urlRouterProvider.otherwise("/");
 
@@ -327,6 +324,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             institution: $scope.selectedSchool,
             professor: $scope.addClassForm.professor,
             timestamp: Firebase.ServerValue.TIMESTAMP,
+            desc: $scope.addClassForm.classDescr
         }).then(function() {
             $scope.addClassForm.className = "";
             $location.path('/');
@@ -337,14 +335,25 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('reviewCtrl', ['$scope', '$uibModal', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $uibModal, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
 
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    var rev = ref.child('reviews');
-    $scope.reviews = $firebaseArray(rev);
+    var reviewRef = ref.child('reviews');
+    var classRef = ref.child('classes');
+    $scope.reviews = $firebaseArray(reviewRef);
+
+    $scope.classes = $firebaseArray(classRef);
+
 
     $scope.reviewFilter = $stateParams.name && $stateParams.school;
 
+    var id = $stateParams.id;
+    console.log($stateParams);
+
+    $scope.r  = {};
+
+    $scope.classes.$loaded().then(function(reviews) {
+        $scope.r = reviews.$getRecord(id);
     $scope.SchoolName = $stateParams.school;
     $scope.ClassName = $stateParams.name;
-    $scope.Institution = $stateParams.institution;
+    $scope.Institution = $scope.r.institution;
 
     $scope.userVerified = $scope.isVerified();
     $scope.ID = $scope.getUserID();
@@ -365,12 +374,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             scope: $scope
         })
     }
-    $scope.max = 5;
-    angular.extend($scope, {
+
+        angular.extend($scope, {
                osloCenter: {
                     lat: $scope.Institution.LATITUDE,
                     lng: $scope.Institution.LONGITUD,
-                    zoom: 14
+                    zoom: 20
                 },
                 markers: {
                     osloMarker: {
@@ -381,6 +390,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                    }
                 }
             });
+    });
+
 
 }])
 
