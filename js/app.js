@@ -317,14 +317,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.addClass = function() {
         var className = $scope.addClassForm.className;
-        // var classDescr = $scope.addClassForm.classDescr;
+        console.log($scope.addClassForm.desc);
         $scope.classList.$add({
             icon: "fa " + $scope.selected,
             name: className,
             institution: $scope.selectedSchool,
             professor: $scope.addClassForm.professor,
             timestamp: Firebase.ServerValue.TIMESTAMP,
-            desc: $scope.addClassForm.classDescr
+            desc: $scope.addClassForm.desc
         }).then(function() {
             $scope.addClassForm.className = "";
             $location.path('/');
@@ -354,6 +354,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.SchoolName = $stateParams.school;
     $scope.ClassName = $stateParams.name;
     $scope.Institution = $scope.r.institution;
+    $scope.Descr = $scope.r.desc;
+
+
 
     $scope.userVerified = $scope.isVerified();
     $scope.ID = $scope.getUserID();
