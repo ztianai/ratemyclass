@@ -364,22 +364,41 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     console.log($scope.reviewEdit);
 
     $scope.PROF = $scope.reviewEdit.prof;
+    $scope.RATE = $scope.reviewEdit.star;
+    $scope.QUARTER = $scope.reviewEdit.quarter;
+    $scope.helpfulness = $scope.reviewEdit.helpfulness;
+    $scope.workload = $scope.reviewEdit.workload;
+    $scope.gpa = $scope.reviewEdit.gpa;
+    $scope.easiness = $scope.reviewEdit.easiness;
+    $scope.newReview = $scope.reviewEdit.text;
 
     $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
-    $scope.gpa = '';
     $scope.workloads = ['1-Not Much Work', '2-Little Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
-    $scope.workload = '';
     $scope.helpfulnesses = ['1-Not Useful', '2-Somewhat Useful', '3-Basic Skills', '4-Worth Learning', '5-Gain Really Helpful Skills'];
-    $scope.helpfulness = '';
     $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
-    $scope.easiness = '';
     $scope.rate = 0;
     $scope.max = 5;
 
-    // review.user = ;
-    // reviews.$save(item).then(function() {
-    //     $scope.uibModalInstance.dismiss();
-    // });
+    $scope.modifyReview = function(reviewToEdit) {
+        console.log(reviewToEdit);
+        reviewToEdit.$save({
+                star: $scope.RATE,
+                prof: $scope.PROF,
+                text: $scope.newReview,
+                gpa: $scope.gpa,
+                workload: $scope.workload,
+                helpfulness: $scope.helpfulness,
+                easiness: $scope.easiness,
+                time: Firebase.ServerValue.TIMESTAMP,
+                quarter: $scope.QUARTER,
+                user: $scope.ID
+            })
+            .then(function() {
+                $scope.newReview = '';
+            })
+        $uibModalInstance.dismiss('closing');
+    }
+
 
 
 
