@@ -45,7 +45,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             url: "/{school}/{name}",
             templateUrl: "partials/review.html",
             controller: 'reviewCtrl',
-            params: { institution: "{institution}", }
+            params: {
+                institution: "{institution}",
+            }
         })
     $urlRouterProvider.otherwise("/");
 
@@ -62,19 +64,19 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
     }
 
-  $scope.changeVerification = function(verified, id) {
-    $scope.userVerified = verified;
-    $scope.userID = id;
-    return $scope.userVerified;
-  };
+    $scope.changeVerification = function(verified, id) {
+        $scope.userVerified = verified;
+        $scope.userID = id;
+        return $scope.userVerified;
+    };
 
-  $scope.isVerified = function() {
-    return $scope.userVerified;
-  }
+    $scope.isVerified = function() {
+        return $scope.userVerified;
+    }
 
-  $scope.getUserID = function() {
-    return $scope.userID;
-  }
+    $scope.getUserID = function() {
+        return $scope.userID;
+    }
 
 
 }])
@@ -85,10 +87,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     /* define reference to your firebase app */
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-
-
-    /* define reference to the "chirps" value in the app */
-    // var chirps = ref.child('chirps');
 
     /* define reference to the "users" value in the app */
     var users = ref.child('users');
@@ -117,8 +115,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 // }
 
                 var newUserInfo = {
-                    'handle': $scope.newUser.handle//,
-                    // 'avatar': $scope.userObj.avatar
+                    'handle': $scope.newUser.handle //,
+                        // 'avatar': $scope.userObj.avatar
                 };
 
                 $scope.users[authData.uid] = newUserInfo;
@@ -160,19 +158,19 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //Make LogOut function available to views
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
-            $scope.changeVerification(false, null);
-            $location.path('/');
-        };
+        $scope.changeVerification(false, null);
+        $location.path('/');
+    };
 
     //Any time auth status updates, set the userId so we know
     Auth.$onAuth(function(authData) {
         if (authData) { //if we are authorized
             $scope.userId = authData.uid;
-                $scope.changeVerification(true, authData.uid);
-            } else {
+            $scope.changeVerification(true, authData.uid);
+        } else {
             $scope.userId = undefined;
-                $scope.changeVerification(false, null);
-            }
+            $scope.changeVerification(false, null);
+        }
     });
 
     //Test if already logged in (when page load)
@@ -190,7 +188,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         }).then(function() {
             $scope.uibModalInstance.dismiss();
         });
-       return promise; //return promise so we can *chain promises*
+        return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
     }
 }])
@@ -200,25 +198,25 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.changePass = function() {
         ref.changePassword({
-          email: $scope.email,
-          oldPassword: $scope.oldPass,
-          newPassword: $scope.newPass
+            email: $scope.email,
+            oldPassword: $scope.oldPass,
+            newPassword: $scope.newPass
         }, function(error) {
-          if (error) {
-            switch (error.code) {
-              case "INVALID_PASSWORD":
-                console.log("The specified user account password is incorrect.");
-                break;
-              case "INVALID_USER":
-                console.log("The specified user account does not exist.");
-                break;
-              default:
-                console.log("Error changing password:", error);
+            if (error) {
+                switch (error.code) {
+                    case "INVALID_PASSWORD":
+                        console.log("The specified user account password is incorrect.");
+                        break;
+                    case "INVALID_USER":
+                        console.log("The specified user account does not exist.");
+                        break;
+                    default:
+                        console.log("Error changing password:", error);
+                }
+            } else {
+                console.log("User password changed successfully!");
+                $scope.uibModalInstance.dismiss();
             }
-          } else {
-            console.log("User password changed successfully!");
-            $scope.uibModalInstance.dismiss();
-          }
         });
     }
 }])
@@ -228,26 +226,23 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.resetPass = function() {
         ref.resetPassword({
-          email: $scope.email
+            email: $scope.email
         }, function(error) {
-          if (error) {
-            switch (error.code) {
-              case "INVALID_USER":
-                console.log("The specified user account does not exist.");
-                break;
-              default:
-                console.log("Error resetting password:", error);
+            if (error) {
+                switch (error.code) {
+                    case "INVALID_USER":
+                        console.log("The specified user account does not exist.");
+                        break;
+                    default:
+                        console.log("Error resetting password:", error);
+                }
+            } else {
+                console.log("Password reset email sent successfully!");
+                $scope.uibModalInstance.dismiss();
             }
-          } else {
-            console.log("Password reset email sent successfully!");
-            $scope.uibModalInstance.dismiss();
-          }
         });
     }
 }])
-
-
-//////////
 
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
@@ -267,12 +262,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
     angular.extend($scope, {
-                usa: {
-                    lat: 41,
-                    lng: -100,
-                    zoom: 4
-                }
-            });
+        usa: {
+            lat: 41,
+            lng: -100,
+            zoom: 4
+        }
+    });
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
@@ -300,15 +295,15 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.selected = font;
     }
 
-    $http.get("../src/font-awesome.json").then(function(response){
-    $scope.fonts = response.data;
-  });
+    $http.get("../src/font-awesome.json").then(function(response) {
+        $scope.fonts = response.data;
+    });
 
 
 
-  $http.get("../src/collegeData.json").then(function(response){
-    $scope.colleges = response.data;
-  });
+    $http.get("../src/collegeData.json").then(function(response) {
+        $scope.colleges = response.data;
+    });
 
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     var classes = ref.child('classes');
@@ -316,18 +311,18 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
     $scope.addClass = function() {
-      var className = $scope.addClassForm.className;
-      var classDescr = $scope.addClassForm.classDescr;
-      $scope.classList.$add({
-        icon: "fa " + $scope.selected,
-        name:className,
-        institution:$scope.selectedSchool,
-        professor: $scope.addClassForm.professor,
-        timestamp: Firebase.ServerValue.TIMESTAMP
-    }).then(function() {
-        $scope.addClassForm.className = "";
-        $location.path('/');
-      })
+        var className = $scope.addClassForm.className;
+        var classDescr = $scope.addClassForm.classDescr;
+        $scope.classList.$add({
+            icon: "fa " + $scope.selected,
+            name: className,
+            institution: $scope.selectedSchool,
+            professor: $scope.addClassForm.professor,
+            timestamp: Firebase.ServerValue.TIMESTAMP
+        }).then(function() {
+            $scope.addClassForm.className = "";
+            $location.path('/');
+        })
     }
 }])
 
@@ -343,7 +338,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.ClassName = $stateParams.name;
     $scope.Institution = $stateParams.institution;
 
-    console.log($stateParams.institution);
     $scope.userVerified = $scope.isVerified();
     $scope.ID = $scope.getUserID();
 
@@ -352,25 +346,34 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         var modalInstance = $uibModal.open({
             templateUrl: 'partials/edit-review-modal.html',
             controller: 'editReviewModal',
-            scope:$scope
+            scope: $scope
         })
     }
 
-    $scope.addReview = function(){
+    $scope.addReview = function() {
         var modalInstance = $uibModal.open({
             templateUrl: 'partials/review-modal.html',
             controller: 'ReviewModalCtrl',
-            scope:$scope
+            scope: $scope
         })
     }
 }])
 
 
-.controller('editReviewModal', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
-    var reviews = $firebaseArray(ref.child('reviews'));
-    var review = reviews.$getRecord($scope.reviewEdit);
-    console.log($scope.reviewEdit);
+.controller('editReviewModal', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/reviews/");
+    $scope.reviewsToEdit = $firebaseArray(ref);
+    var key = $scope.reviewEdit.$id;
+
+    $scope.reviewsToEdit.$loaded().then(function(reviewsToEdit) {
+        $scope.review = reviewsToEdit.$getRecord(key);
+    });
+
+
+    //$scope.review = $scope.reviewsToEdit.
+    // console.log($scope.review);
+
+
 
     $scope.PROF = $scope.reviewEdit.prof;
     $scope.RATE = $scope.reviewEdit.star;
@@ -388,46 +391,43 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.rate = 0;
     $scope.max = 5;
 
-    $scope.modifyReview = function(reviewToEdit) {
-        console.log(reviewToEdit);
-        reviewToEdit.$save({
-                star: $scope.RATE,
-                prof: $scope.PROF,
-                text: $scope.newReview,
-                gpa: $scope.gpa,
-                workload: $scope.workload,
-                helpfulness: $scope.helpfulness,
-                easiness: $scope.easiness,
-                time: Firebase.ServerValue.TIMESTAMP,
-                quarter: $scope.QUARTER,
-                user: $scope.ID
-            })
+    $scope.modifyReview = function() {
+        $scope.review.school = $scope.reviewEdit.school;
+        $scope.review.className = $scope.reviewEdit.className;
+        $scope.review.star = $scope.RATE;
+        $scope.review.prof = $scope.PROF;
+        $scope.review.text = $scope.newReview,
+        $scope.review.gpa = $scope.gpa;
+        $scope.review.workload = $scope.workload;
+        $scope.review.helpfulness = $scope.helpfulness;
+        $scope.review.easiness = $scope.easiness;
+        $scope.review.time = Firebase.ServerValue.TIMESTAMP;
+        $scope.review.quarter = $scope.QUARTER;
+        $scope.review.user = $scope.ID;
+
+        $scope.reviewsToEdit.$save($scope.review)
             .then(function() {
-                $scope.newReview = '';
+                // $scope.reviewsToEdit.$remove($scope.reviewEdit.$id);
             })
         $uibModalInstance.dismiss('closing');
     }
 
-
-
-
-
     angular.extend($scope, {
-                osloCenter: {
-                    lat: $stateParams.institution.LATITUDE,
-                    lng: $stateParams.institution.LONGITUD,
-                    zoom: 14
-                },
-                markers: {
-                    osloMarker: {
-                        lat: $stateParams.institution.LATITUDE,
-                        lng: $stateParams.institution.LONGITUD,
-                        focus: true,
-                        draggable: false
-                    }
-                }
-            });
-    
+        osloCenter: {
+            lat: $stateParams.institution.LATITUDE,
+            lng: $stateParams.institution.LONGITUD,
+            zoom: 14
+        },
+        markers: {
+            osloMarker: {
+                lat: $stateParams.institution.LATITUDE,
+                lng: $stateParams.institution.LONGITUD,
+                focus: true,
+                draggable: false
+            }
+        }
+    });
+
 }])
 
 
@@ -435,7 +435,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
-.controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
+.controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
@@ -472,7 +472,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $uibModalInstance.dismiss('closing');
 
     }
-    
+
 
 
 }])
