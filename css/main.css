@@ -283,7 +283,7 @@ i {
 }
 .edit{
     color: black;
-    font-size: 15px;
+    font-size: 16px;
     float: right;
 }
 
@@ -329,7 +329,7 @@ i {
 }
 /*review page*/
 .review-item {
-    font-size: 15px;
+    font-size: 16px;
     font-family: font-family: "Lucida Console", Monaco, monospace;
     min-height: 13em;
     margin: 5 auto;
@@ -351,6 +351,7 @@ i {
    }
 .time {
     float: right;
+    margin-right: 10px;
 }
 
 .star {
