@@ -380,6 +380,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             scope:$scope
         })
     }
+    $scope.max = 5;
+
 }])
 
 
