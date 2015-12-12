@@ -22,8 +22,8 @@
     <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-6">
             <h1>{{ClassName}}</h1>
-            <p>{{Descr}}</p>
-            <h3>@ <b>{{Institution.INSTNM}}</b></h3>
+            <h3>{{Descr}}</h3>
+            <h4>@ <b>{{Institution.INSTNM}}</b></h4>
             <h4>Address: {{Institution.ADDR}} {{Institution.CITY}} {{Institution.STABBR}} {{Institution.ZIP}}</h4>
             <h4><a href="https://{{Institution.WEBADDR}}">Official Site</a></h4>
             <button type="submit" class = "btn btn-primary" ng-click="addReview()" ng-show="userVerified">Add New Review</button> 

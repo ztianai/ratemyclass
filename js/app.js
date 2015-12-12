@@ -349,6 +349,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.r  = {};
 
+    
     $scope.classes.$loaded().then(function(reviews) {
         $scope.r = reviews.$getRecord(id);
     $scope.SchoolName = $stateParams.school;

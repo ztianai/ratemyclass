@@ -20,17 +20,13 @@
         <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
         
         <label>Select University:</label>
-		<input type="text" ng-model="selectedSchool" uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control">
+		<input type="text" ng-model="selectedSchool" uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control" required>
 
         <label for="classDescr">Class Description:</label>
-        <input id="classDescr" class="form-control" ng-minlength="50" required ng-model="addClassForm.desc">
+        <input id="classDescr" class="form-control" required ng-model="addClassForm.desc" name="classDescr" ng-minlength="50">
+        <p class="help-block" ng-show="addClassForm.classDescr.$error.minlength">Minimum length of 50 characters!</p>
 
-        <label for="professor">Professor (optional):</label>
-        <input id="professor" class="form-control" ng-model="addClassForm.professor">
-
-        
-
-        <button type="submit" class="btn btn-primary" ng-click="addClass()">Add Review</button>
+        <button type="submit" class="btn btn-primary" ng-click="addClass()" ng-disabled="addClassForm.$invalid">Add Review</button>
     </div>
 
     <i id="blah" class="fa {{selected}}"></i>

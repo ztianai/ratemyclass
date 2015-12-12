@@ -36,8 +36,9 @@
         </div>
         </div>
         <br>
-        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required></textarea>
-        <br>
+        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required ng-maxlength="300"></textarea>
+        <p class="help-block" ng-show="reviewForm.text.$error.maxlength">300 characters limit!</p>
+
             <div class="form-group send-review">
                 <button type="submit" class="btn btn-primary" ng-click="submitReview()" ng-disabled="reviewForm.$invalid">
                     <i class="fa fa-pencil-square-o"></i> Share
