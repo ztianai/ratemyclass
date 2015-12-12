@@ -84,7 +84,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     /* define reference to the "users" value in the app */
     var users = ref.child('users');
 
-
     /* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
     $scope.users = $firebaseObject(users);
     var Auth = $firebaseAuth(ref);
@@ -114,8 +113,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
                 $scope.userID = authData.uid;
 
                 $scope.changeVerification(true, authData.uid);
-
-                // $scope.$apply();
 
             })
             .catch(function(error) {
@@ -189,8 +186,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 
     $scope.checkPass = function() {
-        //Store the password field objects into variables
-        //Joe, after scope, is it 'User', right?...
+
         var confirmNewPass = $scope.user.confirmNewPass;
         var newPass = $scope.user.newPass;
         //Compare the values in the password field
@@ -250,7 +246,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 }])
 
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); //EVERYONE, WATCH URLS.  THIS POINTS TO THE CLASSES, VS WITHOUT HAVING CLASSLIST ON THE END, IT JUST POINTS TO OUR DATABASE!
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); 
     $scope.classList = $firebaseArray(ref);
 }])
 
@@ -287,9 +283,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
 
     });
-
-
-
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
@@ -427,9 +420,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.$digest();
     }
 
-
-
-
 }])
 
 
@@ -441,10 +431,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.reviewsToEdit.$loaded().then(function(reviewsToEdit) {
         $scope.review = reviewsToEdit.$getRecord(key);
     });
-
-
-    //$scope.review = $scope.reviewsToEdit.
-    // console.log($scope.review);
 
     console.log($scope.reviewEdit.prof);
 
@@ -482,17 +468,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.review.quarter = $scope.quarter;
         $scope.review.user = $scope.ID;
 
-        $scope.reviewsToEdit.$save($scope.review)
-            .then(function() {
-                // $scope.reviewsToEdit.$remove($scope.reviewEdit.$id);
-            })
+        $scope.reviewsToEdit.$save($scope.review);
         $uibModalInstance.dismiss('closing');
     }
 }])
 
-
+//The controller for the Help view
 .controller('helpCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
 .controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
