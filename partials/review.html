@@ -12,6 +12,7 @@
         <input type="text" ng-model="search"/>
         <div ng-repeat="review in reviews | filter:search "> </div>
         </div>
+
     </div> -->
 
     </div>
@@ -21,6 +22,7 @@
     <div class="container">
         <div class="col-lg-6 col-md-6 col-sm-6">
             <h1>{{ClassName}}</h1>
+            <h2>{{Descr}}</h2>
             <h3>@ <b>{{Institution.INSTNM}}</b></h3>
             <h4>Address: {{Institution.ADDR}} {{Institution.CITY}} {{Institution.STABBR}} {{Institution.ZIP}}</h4>
             <h4><a href="https://{{Institution.WEBADDR}}">Official Site</a></h4>
@@ -37,13 +39,16 @@
     </div>
 
     <hr>
-
+    <div class="container" id="searchBar">
+        <label for="search"><i class="fa fa-search searchIcon"></i></label>
+        <input name="query" placeholder="Search specific professor" id="search" ng-model="searchQuery">
+    </div>
 
     <!-- Show everyone's reviews -->
     <!-- Use ng-repeat directive to repeat a div for each element in reviews -->
     <!-- order by time -->
 
-    <div class="review-box" ng-repeat="review in reviews | filter: {className:ClassName, school: SchoolName}:true | orderBy:'-time'">
+    <div class="review-box" ng-repeat="review in reviews | filter: {className:ClassName, school: SchoolName}:true | filter: searchQuery | orderBy:'-time'">
             <div class="review-item">
                 <!--<div class="star">-->
                     <uib-rating class="star" ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1"

@@ -94,23 +94,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.userObj = {};
 
-
-    $scope.signUp = function(handle, email, password) {
-        console.log("creating user " + $scope.newUser.email);
+    $scope.signUp = function() {
 
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
-                'email': email,
-                'password': password
-            }).then($scope.signIn(email, password))
+                'email': $scope.newUser.email,
+                'password': $scope.newUser.password
+            })
+            .then($scope.signIn)
             .then(function(authData) {
 
-                console.log("loading!");
-
                 var newUserInfo = {
-                    'handle': $scope.newUser.handle //,
-                        // 'avatar': $scope.userObj.avatar
+                    'handle': $scope.newUser.handle 
                 };
+
+                console.log(authData);
 
                 $scope.users[authData.uid] = newUserInfo;
 
@@ -120,7 +118,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
                 $scope.changeVerification(true, authData.uid);
 
-
+                // $scope.$apply();
 
             })
             .catch(function(error) {
@@ -175,13 +173,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 
     //separate signIn function
-    $scope.signIn = function(email, password) {
+    $scope.signIn = function() {
         var promise = Auth.$authWithPassword({
-            'email': email,
-            'password': password
-        }).then(function() {
-            $scope.uibModalInstance.dismiss();
+            'email': $scope.newUser.email,
+            'password': $scope.newUser.password
         });
+        $scope.uibModalInstance.dismiss();
         return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
     }
@@ -323,13 +320,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.addClass = function() {
         var className = $scope.addClassForm.className;
-        var classDescr = $scope.addClassForm.classDescr;
+        // var classDescr = $scope.addClassForm.classDescr;
         $scope.classList.$add({
             icon: "fa " + $scope.selected,
             name: className,
             institution: $scope.selectedSchool,
             professor: $scope.addClassForm.professor,
-            timestamp: Firebase.ServerValue.TIMESTAMP
+            timestamp: Firebase.ServerValue.TIMESTAMP,
         }).then(function() {
             $scope.addClassForm.className = "";
             $location.path('/');
@@ -423,14 +420,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.review.school = $scope.reviewEdit.school;
         $scope.review.className = $scope.reviewEdit.className;
         $scope.review.star = $scope.RATE;
-        $scope.review.prof = $scope.PROF;
+        $scope.review.prof = $scope.prof;
         $scope.review.text = $scope.newReview,
         $scope.review.gpa = $scope.gpa;
         $scope.review.workload = $scope.workload;
         $scope.review.helpfulness = $scope.helpfulness;
         $scope.review.easiness = $scope.easiness;
         $scope.review.time = Firebase.ServerValue.TIMESTAMP;
-        $scope.review.quarter = $scope.QUARTER;
+        $scope.review.quarter = $scope.quarter;
         $scope.review.user = $scope.ID;
 
         $scope.reviewsToEdit.$save($scope.review)
@@ -440,21 +437,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $uibModalInstance.dismiss('closing');
     }
 
-    angular.extend($scope, {
-        osloCenter: {
-            lat: $stateParams.institution.LATITUDE,
-            lng: $stateParams.institution.LONGITUD,
-            zoom: 14
-        },
-        markers: {
-            osloMarker: {
-                lat: $stateParams.institution.LATITUDE,
-                lng: $stateParams.institution.LONGITUD,
-                focus: true,
-                draggable: false
-            }
-        }
-    });
+    // angular.extend($scope, {
+    //     osloCenter: {
+    //         lat: $stateParams.institution.LATITUDE,
+    //         lng: $stateParams.institution.LONGITUD,
+    //         zoom: 14
+    //     },
+    //     markers: {
+    //         osloMarker: {
+    //             lat: $stateParams.institution.LATITUDE,
+    //             lng: $stateParams.institution.LONGITUD,
+    //             focus: true,
+    //             draggable: false
+    //         }
+    //     }
+    // });
 
 }])
 
