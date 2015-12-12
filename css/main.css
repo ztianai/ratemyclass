@@ -281,10 +281,18 @@ footer {
 i {
     color: white;
 }
+.edit{
+    color: black;
+    font-size: 16px;
+    float: right;
+}
 
 .glyphicon{
     font-size: 1.5em;
     color: #aa863a;
+}
+#starReview{
+    margin-left: 1em;
 }
 
 .iconDiv:hover i {
@@ -321,7 +329,7 @@ i {
 }
 /*review page*/
 .review-item {
-    font-size: 15px;
+    font-size: 16px;
     font-family: font-family: "Lucida Console", Monaco, monospace;
     min-height: 13em;
     margin: 5 auto;
@@ -343,6 +351,7 @@ i {
    }
 .time {
     float: right;
+    margin-right: 10px;
 }
 
 .star {
@@ -392,5 +401,12 @@ text-align:center;
 @media screen and (max-width:768px){
     ul{
         margin-left: -40px;
+    }
+    .review-item {
+    font-size: 13px;
+
+    min-height: 15em;
+
+
     }
 }
