@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize', 'ngSanitize', 'leaflet-directive'])
+angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize', 'leaflet-directive'])
 
 
 .config(function($stateProvider, $urlRouterProvider) {
@@ -102,7 +102,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             .then(function(authData) {
 
                 var newUserInfo = {
-                    'handle': $scope.newUser.handle 
+                    'handle': $scope.newUser.handle
                 };
 
                 console.log(authData);
@@ -184,21 +184,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('changePasswordCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
-      //default values
-     $scope.showPasswordsDoNotMatch = false;
+    //default values
+    $scope.showPasswordsDoNotMatch = false;
 
 
     $scope.checkPass = function() {
-            //Store the password field objects into variables
-             //Joe, after scope, is it 'User', right?...
-            var confirmNewPass = $scope.user.confirmNewPass;
-            var newPass = $scope.user.newPass;
-            //Compare the values in the password field
-            if( newPass===confirmNewPass ) {
-                $scope.showPasswordsDoNotMatch = false;
-            } else {
-                $scope.showPasswordsDoNotMatch = true;
-            }
+        //Store the password field objects into variables
+        //Joe, after scope, is it 'User', right?...
+        var confirmNewPass = $scope.user.confirmNewPass;
+        var newPass = $scope.user.newPass;
+        //Compare the values in the password field
+        if (newPass === confirmNewPass) {
+            $scope.showPasswordsDoNotMatch = false;
+        } else {
+            $scope.showPasswordsDoNotMatch = true;
+        }
     }
 
     $scope.changePass = function() {
@@ -264,7 +264,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 }])
 
 .controller('mapCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
     angular.extend($scope, {
         usa: {
@@ -347,53 +346,62 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var id = $stateParams.id;
     console.log($stateParams);
 
-    $scope.r  = {};
-
+    $scope.r = {};
+    $scope.schoolCenter = {};
     $scope.classes.$loaded().then(function(reviews) {
         $scope.r = reviews.$getRecord(id);
-    $scope.SchoolName = $stateParams.school;
-    $scope.ClassName = $stateParams.name;
-    $scope.Institution = $scope.r.institution;
-    $scope.Descr = $scope.r.desc;
+        $scope.SchoolName = $stateParams.school;
+        $scope.ClassName = $stateParams.name;
+        $scope.Institution = $scope.r.institution;
+        $scope.Descr = $scope.r.desc;
 
 
+        $scope.userVerified = $scope.isVerified();
+        $scope.ID = $scope.getUserID();
 
-    $scope.userVerified = $scope.isVerified();
-    $scope.ID = $scope.getUserID();
+        $scope.editReview = function(review) {
+            $scope.reviewEdit = review;
+            var modalInstance = $uibModal.open({
+                templateUrl: 'partials/edit-review-modal.html',
+                controller: 'editReviewModal',
+                scope: $scope
+            })
+        }
 
-    $scope.editReview = function(review) {
-        $scope.reviewEdit = review;
-        var modalInstance = $uibModal.open({
-            templateUrl: 'partials/edit-review-modal.html',
-            controller: 'editReviewModal',
-            scope: $scope
-        })
-    }
+        $scope.addReview = function() {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'partials/review-modal.html',
+                controller: 'ReviewModalCtrl',
+                scope: $scope
+            })
+        }
 
-    $scope.addReview = function() {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'partials/review-modal.html',
-            controller: 'ReviewModalCtrl',
-            scope: $scope
-        })
-    }
+        $scope.makeMap($scope.Institution);
 
+    })
+
+    $scope.makeMap = function(Institution) {
+        console.log(Institution);
         angular.extend($scope, {
-               osloCenter: {
-                    lat: $scope.Institution.LATITUDE,
-                    lng: $scope.Institution.LONGITUD,
-                    zoom: 20
-                },
-                markers: {
-                    osloMarker: {
-                        lat: $scope.Institution.LATITUDE,
-                       lng: $scope.Institution.LONGITUD,
-                       focus: true,
-                        draggable: false
-                   }
+            schoolCenter: {
+                lat: Institution.LATITUDE,
+                lng: Institution.LONGITUD,
+                zoom: 10
+            },
+            markers: {
+                osloMarker: {
+                    lat: Institution.LATITUDE,
+                    lng: Institution.LONGITUD,
+                    focus: true,
+                    draggable: false
                 }
-            });
-    });
+            }
+        });
+        $scope.$digest();
+    }
+
+
+
 
 
 }])
@@ -440,7 +448,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.review.star = $scope.RATE;
         $scope.review.prof = $scope.prof;
         $scope.review.text = $scope.newReview,
-        $scope.review.gpa = $scope.gpa;
+            $scope.review.gpa = $scope.gpa;
         $scope.review.workload = $scope.workload;
         $scope.review.helpfulness = $scope.helpfulness;
         $scope.review.easiness = $scope.easiness;
@@ -454,23 +462,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             })
         $uibModalInstance.dismiss('closing');
     }
-
-    // angular.extend($scope, {
-    //     osloCenter: {
-    //         lat: $stateParams.institution.LATITUDE,
-    //         lng: $stateParams.institution.LONGITUD,
-    //         zoom: 14
-    //     },
-    //     markers: {
-    //         osloMarker: {
-    //             lat: $stateParams.institution.LATITUDE,
-    //             lng: $stateParams.institution.LONGITUD,
-    //             focus: true,
-    //             draggable: false
-    //         }
-    //     }
-    // });
-
 }])
 
 
