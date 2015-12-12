@@ -270,19 +270,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $http.get("../src/collegeData.json").then(function(response) {
         var colleges = response.data;
         // console.log(response.data);
-        for(var i = 0; i < colleges.length; i++) {
-            $scope.markers.push({lat:colleges[i].LATITUDE, lng: colleges[i].LONGITUD});
+        for (var i = 0; i < colleges.length; i++) {
+            $scope.markers.push({
+                lat: colleges[i].LATITUDE,
+                lng: colleges[i].LONGITUD
+            });
         }
 
-console.log($scope.markers);
-
-            angular.extend($scope, {
-        usa: {
-            lat: 41,
-            lng: -100,
-            zoom: 4
-        }, markers: $scope.markers
-    });
+        angular.extend($scope, {
+            usa: {
+                lat: 41,
+                lng: -100,
+                zoom: 7
+            },
+            markers: $scope.markers
+        });
 
     });
 
@@ -398,15 +400,15 @@ console.log($scope.markers);
 
     $scope.makeMap = function(Institution) {
         console.log(Institution);
-    $scope.addReview = function() {
-        var modalInstance = $uibModal.open({
-            templateUrl: 'partials/review-modal.html',
-            controller: 'ReviewModalCtrl',
-            scope: $scope
-        })
-    }
+        $scope.addReview = function() {
+            var modalInstance = $uibModal.open({
+                templateUrl: 'partials/review-modal.html',
+                controller: 'ReviewModalCtrl',
+                scope: $scope
+            })
+        }
 
-    $scope.max = 5;
+        $scope.max = 5;
         angular.extend($scope, {
             schoolCenter: {
                 lat: Institution.LATITUDE,
@@ -424,7 +426,6 @@ console.log($scope.markers);
         });
         $scope.$digest();
     }
-
 
 
 
@@ -531,7 +532,4 @@ console.log($scope.markers);
         $uibModalInstance.dismiss('closing');
 
     }
-
-
-
 }])

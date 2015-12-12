@@ -49,28 +49,7 @@
     <!-- order by time -->
 
     <div class="review-box" ng-repeat="review in reviews | filter: {className:ClassName, school: SchoolName}:true | filter: searchQuery | orderBy:'-time'">
-            <!-- <div class="review-item"> -->
-                <!--<div class="star">-->
-                    <!-- <uib-rating class="star" ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1"
-                                state-off="'glyphicon glyphicon-star-empty'"
-                                state-on="'glyphicon glyphicon-star'" id="starReview"></uib-rating> -->
-                <!--</div>-->
-                <!-- <div class="time">{{review.time | date:'short'}}</div><br>
-                <div class="col-xs-12 col-sm-4 col-md-4" id="ratings">
-                    <span class="details">Workload: {{review.workload}}</span><br>
-                    <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
-                    <span class="details">Easiness: {{review.easiness}}</span><br>
-                    <span class="details">Professor: {{review.prof}}</span><br>
-                    <span class="details">Quarter: {{review.quarter}} </span><br>
-                    <span class="details">Average GPA: {{review.gpa}}</span><br>
-                </div>
-                <div class="col-sm-6" name="comment">{{review.text}}</div>
-                <div class="col-xs-12 col-sm-2 col-md-2">
-                <i class="fa fa-pencil-square-o edit" ng-show="review.user == ID" ng-click="editReview(review)">Edit Review</i>
-                </div>
-
-            </div>
- -->            <div class="review-item">
+           <div class="review-item">
                 <!--<div class="star">-->
                     <uib-rating class="star" ng-model="review.star" max="max" readonly="!isReadonly" aria-labelledby="custom-icons-1"
                                 state-off="'glyphicon glyphicon-star-empty'"
