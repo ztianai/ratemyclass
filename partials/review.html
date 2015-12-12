@@ -51,7 +51,7 @@
                                 state-on="'glyphicon glyphicon-star'" id="starReview"></uib-rating>
                 <!--</div>-->
                 <div class="time">{{review.time | date:'short'}}</div><br>
-                <div class="col-sm-4" id="ratings">
+                <div class="col-xs-12 col-sm-4 col-md-4" id="ratings">
                     <span class="details">Workload: {{review.workload}}</span><br>
                     <span class="details">Helpfulness: {{review.helpfulness}}</span><br>
                     <span class="details">Easiness: {{review.easiness}}</span><br>
@@ -59,8 +59,10 @@
                     <span class="details">Quarter: {{review.quarter}} </span><br>
                     <span class="details">Average GPA: {{review.gpa}}</span><br>
                 </div>
-                <div class="col-sm-6" name="comment">{{review.text}}</div>
-                <i class="fa fa-pencil-square-o edit" ng-show="review.user == ID" ng-click="editReview(review)"></i>
+                <div class="col-xs-12 col-sm-6 col-md-6" name="comment">{{review.text}}</div>
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                <i class="fa fa-pencil-square-o edit" ng-show="review.user == ID" ng-click="editReview(review)">Edit Review</i>
+                </div>
 
             </div>
     </div>

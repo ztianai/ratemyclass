@@ -284,6 +284,7 @@ i {
 .edit{
     color: black;
     font-size: 15px;
+    float: right;
 }
 
 .glyphicon{
@@ -393,5 +394,12 @@ text-align:center;
 @media screen and (max-width:768px){
     ul{
         margin-left: -40px;
+    }
+    .review-item {
+    font-size: 13px;
+
+    min-height: 15em;
+
+
     }
 }
