@@ -281,6 +281,10 @@ footer {
 i {
     color: white;
 }
+.edit{
+    color: black;
+    font-size: 15px;
+}
 
 .glyphicon{
     font-size: 1.5em;
