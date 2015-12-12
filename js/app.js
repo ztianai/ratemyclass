@@ -382,6 +382,15 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.makeMap = function(Institution) {
         console.log(Institution);
+    $scope.addReview = function() {
+        var modalInstance = $uibModal.open({
+            templateUrl: 'partials/review-modal.html',
+            controller: 'ReviewModalCtrl',
+            scope: $scope
+        })
+    }
+
+    $scope.max = 5;
         angular.extend($scope, {
             schoolCenter: {
                 lat: Institution.LATITUDE,
