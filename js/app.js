@@ -377,7 +377,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             scope: $scope
         })
     }
-
+    $scope.max = 5;
         angular.extend($scope, {
                osloCenter: {
                     lat: $scope.Institution.LATITUDE,
