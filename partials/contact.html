@@ -1,55 +1,73 @@
-<div id="partialHead">
-    <h1>Contact Us</h1>
-</div>
-<div>
-	<p class="text about">
-		Would you like to get in touch? Whether you have a simple question, would like to join our team, or find a bug on our site, please use the contact form below and we will respond to your inquiry within 48 business hours.
-	</p>
+    <div id="partialHead">
+        <h1>Contact Us</h1>
+    </div>
+    <div>
+        <p class="text about">
+            Would you like to get in touch? Whether you have a simple question, would like to join our team, or find a bug
+            on our site, please use the contact form below and we will respond to your inquiry within 48 business hours.
+        </p>
 
-	<div ng-controller="contactCtrl">
-		<p ng-show="submitted" class="alert alert-success">thank you for your request!</p>
+        <div ng-controller="contactCtrl">
+            <p ng-show="submitted" class="alert alert-success">thank you for your request!</p>
 
-		<form name="contactForm" id="formContact" action="MAILTO:contact@ratemyclass.com" method="post" enctype="text/plain" novalidate>
-			
-			<!-- Name -->
-			<div class="form-group" ng-class="{'has-error':contactForm.name.$invalid && contactForm.name.$touched}">
-				<label for="name">Name:</label>
-				<input type="text" ng-model="name" class="form-control" name="name" required>
-				<p ng-show="contactForm.name.$error.required && contactForm.name.$touched" class="help-block">required</p>
-			</div>
+            <form name="contactForm" id="formContact" action="MAILTO:contact@ratemyclass.com" method="post"
+                  enctype="text/plain" novalidate>
 
-			<!-- Email -->
-			<div class="form-group" ng-class="{'has-error':contactForm.email.$invalid && (!contactForm.email.$pristine || contactForm.email.$touched)}">
-				<label for="email">Email:</label>
-				<input type="email" ng-model="email" class="form-control" name="email" id="email" required>
-				<p ng-show="contactForm.email.$error.email && !contactForm.email.$pristine" class="help-block">enter a valid email</p>
-		        <p ng-show="contactForm.email.$error.required && contactForm.email.$touched" class="help-block">required</p>
-			</div>
+                <!-- Name -->
+                <div class="form-group" ng-class="{'has-error':contactForm.name.$invalid && contactForm.name.$touched}">
+                    <label for="name">Name:</label>
+                    <input type="text" ng-model="name" class="form-control" name="name" required>
 
-			<!-- Option -->
-			<div class="form-group" ng-class="{'has-error':contactForm.option.$invalid && contactForm.option.$touched}">
-				<label for="option">Topic:</label>
-        		<select name="option" ng-model="option" class="form-control" required>
-        			<option value="General">General</option>
-        			<option value="error">Error</option>
-        			<option value="jobs">Jobs</option>
-        			<option value="other">Other</option>
-        		</select>
-        		<p ng-show="contactForm.option.$error.required && contactForm.option.$touched" class="help-block">required</p>
-			</div>
+                    <p ng-show="contactForm.name.$error.required && contactForm.name.$touched" class="help-block">
+                        required</p>
+                </div>
 
-			<!-- Comments -->
-			<div class="form-group" ng-class="{'has-error':contactForm.comments.$invalid && contactForm.comments.$touched}">
-				<label for="comments">Comments:</label>
-				<textarea ng-model="comments" id="comments" class="form-control" name="comments" required></textarea>
-				<p ng-show="contactForm.comments.$error.required && contactForm.comments.$touched" class="help-block">required</p>
-			</div>
+                <!-- Email -->
+                <div class="form-group"
+                     ng-class="{'has-error':contactForm.email.$invalid && (!contactForm.email.$pristine || contactForm.email.$touched)}">
+                    <label for="email">Email:</label>
+                    <input type="email" ng-model="email" class="form-control" name="email" id="email" required>
 
-			 <!-- Buttons -->
-			 <div id="contactButtons">
-		    	<button class="btn btn-primary" type="submit" name="submit" ng-disabled="contactForm.$invalid" ng-model="submitFormButton" ng-click="submitForm()">Send</button>
-		    	<button class="btn btn-primary" type="reset" name="reset" ng-model="resetFormButton" ng-click="resetForm()">Reset</button>
-			</div>
-		</form>
-	</div>
-</div>
+                    <p ng-show="contactForm.email.$error.email && !contactForm.email.$pristine" class="help-block">enter a
+                        valid email</p>
+
+                    <p ng-show="contactForm.email.$error.required && contactForm.email.$touched" class="help-block">
+                        required</p>
+                </div>
+
+                <!-- Option -->
+                <div class="form-group" ng-class="{'has-error':contactForm.option.$invalid && contactForm.option.$touched}">
+                    <label for="option">Topic:</label>
+                    <select name="option" ng-model="option" class="form-control" required>
+                        <option value="General">General</option>
+                        <option value="error">Error</option>
+                        <option value="jobs">Jobs</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <p ng-show="contactForm.option.$error.required && contactForm.option.$touched" class="help-block">
+                        required</p>
+                </div>
+
+                <!-- Comments -->
+                <div class="form-group"
+                     ng-class="{'has-error':contactForm.comments.$invalid && contactForm.comments.$touched}">
+                    <label for="comments">Comments:</label>
+                    <textarea ng-model="comments" id="comments" class="form-control" name="comments" required></textarea>
+
+                    <p ng-show="contactForm.comments.$error.required && contactForm.comments.$touched" class="help-block">
+                        required</p>
+                </div>
+
+                <!-- Buttons -->
+                <div id="contactButtons">
+                    <button class="btn btn-primary" type="submit" name="submit" ng-disabled="contactForm.$invalid"
+                            ng-model="submitFormButton" ng-click="submitForm()">Send
+                    </button>
+                    <button class="btn btn-primary" type="reset" name="reset" ng-model="resetFormButton"
+                            ng-click="resetForm()">Reset
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>

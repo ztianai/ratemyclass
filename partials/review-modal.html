@@ -1,12 +1,14 @@
 <div class="review modal-body">
-        <h1>Review {{ClassName}}</h1>
-        <!-- Review form -->
-        <form name="reviewForm" id="review-input">
+    <h1>Review {{ClassName}}</h1>
+    <!-- Review form -->
+    <form name="reviewForm" id="review-input">
 
-        <uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)" on-leave="overStar = null"
+        <uib-rating ng-model="rate" max="max" readonly="isReadonly" on-hover="hoveringOver(value)"
+                    on-leave="overStar = null"
                     aria-labelledby="custom-icons-1" state-off="'glyphicon glyphicon-star-empty'"
                     state-on="'glyphicon glyphicon-star'"></uib-rating>
         <br>
+
         <div class="row">
             <div class="col-lg-6">
                 <label for="prof">Professor: </label>
@@ -18,31 +20,37 @@
             </div>
         </div>
         <div class="row">
-        <div class="col-lg-3">
-             <label for="helpfulness">Helpfulness: </label>
-        <select name="helpfulness" ng-model="helpfulness" ng-options="score for score in helpfulnesses" class="form-control" required></select>
-        </div>
-        <div class="col-lg-3">
-            <label for="workload">Workload: </label>
-        <select name="workload" ng-model="workload" ng-options="score for score in workloads" class="form-control" required></select>
-        </div>
-        <div class="col-lg-3">
-            <label for="easiness">Easiness: </label>
-        <select name="easiness" ng-model="easiness" ng-options="score for score in easinesses" class="form-control" required></select>
-        </div>
-        <div class="col-lg-3">
-            <label for="gpa">GPA: </label>
-        <select name="gpa" ng-model="gpa" ng-options="score for score in gpas" class="form-control" required></select>
-        </div>
+            <div class="col-lg-3">
+                <label for="helpfulness">Helpfulness: </label>
+                <select name="helpfulness" ng-model="helpfulness" ng-options="score for score in helpfulnesses"
+                        class="form-control" required></select>
+            </div>
+            <div class="col-lg-3">
+                <label for="workload">Workload: </label>
+                <select name="workload" ng-model="workload" ng-options="score for score in workloads"
+                        class="form-control" required></select>
+            </div>
+            <div class="col-lg-3">
+                <label for="easiness">Easiness: </label>
+                <select name="easiness" ng-model="easiness" ng-options="score for score in easinesses"
+                        class="form-control" required></select>
+            </div>
+            <div class="col-lg-3">
+                <label for="gpa">GPA: </label>
+                <select name="gpa" ng-model="gpa" ng-options="score for score in gpas" class="form-control"
+                        required></select>
+            </div>
         </div>
         <br>
-        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required ng-maxlength="300"></textarea>
+        <textarea placeholder="Leave more comments..." name="text" class="form-control" ng-model="newReview" required
+                  ng-maxlength="300"></textarea>
+
         <p class="help-block" ng-show="reviewForm.text.$error.maxlength">300 characters limit!</p>
 
-            <div class="form-group send-review">
-                <button type="submit" class="btn btn-primary" ng-click="submitReview()" ng-disabled="reviewForm.$invalid">
-                    <i class="fa fa-pencil-square-o"></i> Share
-                </button>
-            </div>
-        </form>
-    </div>
+        <div class="form-group send-review">
+            <button type="submit" class="btn btn-primary" ng-click="submitReview()" ng-disabled="reviewForm.$invalid">
+                <i class="fa fa-pencil-square-o"></i> Share
+            </button>
+        </div>
+    </form>
+</div>

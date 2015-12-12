@@ -1,34 +1,39 @@
-<div id="partialHead">
-    <h1>Add Class</h1>
-</div>
-
-
-	<form name="addClassForm" novalidate id="addClassForm">
-
-    <!-- Bind model "handle" to this input and make the help-block show up if too short -->
-    <div class="form-group container-fluid typeahead-demo">
-
-		
-<div id="iconContainer">
-        <div class="iconDiv" ng-repeat="font in fonts" ng-class="{active : isSelected(font.name)}">
-            <i class="fa {{font.name}}" ng-click="setMaster(font.name)"></i>
-        </div>
-</div>
-
-
-        <label for="className">Class Name:</label>
-        <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
-        
-        <label>Select University:</label>
-		<input type="text" ng-model="selectedSchool" uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control" required>
-
-        <label for="classDescr">Class Description:</label>
-        <input id="classDescr" class="form-control" required ng-model="addClassForm.desc" name="classDescr" ng-minlength="50">
-        <p class="help-block" ng-show="addClassForm.classDescr.$error.minlength">Minimum length of 50 characters!</p>
-
-        <button type="submit" class="btn btn-primary" ng-click="addClass()" ng-disabled="addClassForm.$invalid">Add Class</button>
+    <div id="partialHead">
+        <h1>Add Class</h1>
     </div>
 
 
+    <form name="addClassForm" novalidate id="addClassForm">
 
-</form>
+        <!-- Bind model "handle" to this input and make the help-block show up if too short -->
+        <div class="form-group container-fluid typeahead-demo">
+
+
+            <div id="iconContainer">
+                <div class="iconDiv" ng-repeat="font in fonts" ng-class="{active : isSelected(font.name)}">
+                    <i class="fa {{font.name}}" ng-click="setMaster(font.name)"></i>
+                </div>
+            </div>
+
+
+            <label for="className">Class Name:</label>
+            <input id="className" class="form-control" ng-minlength="3" required ng-model="addClassForm.className">
+
+            <label>Select University:</label>
+            <input type="text" ng-model="selectedSchool"
+                   uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8"
+                   placeholder="Select your University" class="form-control" required>
+
+            <label for="classDescr">Class Description:</label>
+            <input id="classDescr" class="form-control" required ng-model="addClassForm.desc" name="classDescr"
+                   ng-minlength="50">
+
+            <p class="help-block" ng-show="addClassForm.classDescr.$error.minlength">Minimum length of 50 characters!</p>
+
+            <button type="submit" class="btn btn-primary" ng-click="addClass()" ng-disabled="addClassForm.$invalid">Add
+                Class
+            </button>
+        </div>
+
+
+    </form>
