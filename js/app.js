@@ -94,23 +94,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     $scope.userObj = {};
 
-
-    $scope.signUp = function(handle, email, password) {
-        console.log("creating user " + $scope.newUser.email);
+    $scope.signUp = function() {
 
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
-                'email': email,
-                'password': password
+                'email': $scope.newUser.email,
+                'password': $scope.newUser.password
             })
+            .then($scope.signIn)
             .then(function(authData) {
 
-                console.log("loading!");
-
                 var newUserInfo = {
-                    'handle': $scope.newUser.handle //,
-                        // 'avatar': $scope.userObj.avatar
+                    'handle': $scope.newUser.handle 
                 };
+
+                console.log(authData);
 
                 $scope.users[authData.uid] = newUserInfo;
 
@@ -120,13 +118,15 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
                 $scope.changeVerification(true, authData.uid);
 
+                // $scope.$apply();
+
             })
             .catch(function(error) {
                 //error handling (called on the promise)
                 $scope.changeVerification(false, null);
                 $scope.errorMessage = error;
                 console.log(error);
-            }).then($scope.signIn(email, password))
+            })
     };
 
     $scope.changePassword = function() {
@@ -173,13 +173,12 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 
     //separate signIn function
-    $scope.signIn = function(email, password) {
+    $scope.signIn = function() {
         var promise = Auth.$authWithPassword({
-            'email': email,
-            'password': password
-        }).then(function() {
-            $scope.uibModalInstance.dismiss();
+            'email': $scope.newUser.email,
+            'password': $scope.newUser.password
         });
+        $scope.uibModalInstance.dismiss();
         return promise; //return promise so we can *chain promises*
         //and call .then() on returned value
     }
