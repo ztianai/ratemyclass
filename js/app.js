@@ -205,10 +205,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.checkPass = function() {
             //Store the password field objects into variables
              //Joe, after scope, is it 'User', right?...
-            var oldPass = $scope.user.oldPass;
+            var confirmNewPass = $scope.user.confirmNewPass;
             var newPass = $scope.user.newPass;
             //Compare the values in the password field
-            if(oldPass === newPass) {
+            if( newPass===confirmNewPass ) {
                 $scope.showPasswordsDoNotMatch = false;
             } else {
                 $scope.showPasswordsDoNotMatch = true;
