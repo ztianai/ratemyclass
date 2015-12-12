@@ -265,29 +265,29 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 .controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
-    // $scope.markers = [];
+    $scope.markers = [];
 
-    // $http.get("../src/collegeData.json").then(function(response) {
-    //     var colleges = response.data;
-    //     for(var i = 0; i < colleges.length; i++) {
+    $http.get("../src/collegeData.json").then(function(response) {
+        var colleges = response.data;
+        // console.log(response.data);
+        for(var i = 0; i < colleges.length; i++) {
+            $scope.markers.push({lat:colleges[i].LATITUDE, lng: colleges[i].LONGITUD});
+        }
 
-    //     }
-    // });
+console.log($scope.markers);
 
-    // angular.extend($scope, {
-    //     usa: {
-    //         lat: 41,
-    //         lng: -100,
-    //         zoom: 4
-    //     }, markers: {
-    //         osloMarker: {
-    //             lat: Institution.LATITUDE,
-    //             lng: Institution.LONGITUD,
-    //             focus: true,
-    //             draggable: false
-    //         }
-    //     }
-    // });
+            angular.extend($scope, {
+        usa: {
+            lat: 41,
+            lng: -100,
+            zoom: 4
+        }, markers: $scope.markers
+    });
+
+    });
+
+
+
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
