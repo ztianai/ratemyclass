@@ -62,13 +62,18 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
     }
 
-  $scope.changeVerification = function(verified) {
+  $scope.changeVerification = function(verified, id) {
     $scope.userVerified = verified;
+    $scope.userID = id;
     return $scope.userVerified;
   };
 
   $scope.isVerified = function() {
     return $scope.userVerified;
+  }
+
+  $scope.getUserID = function() {
+    return $scope.userID;
   }
 
 
@@ -122,14 +127,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
                 $scope.userID = authData.uid;
 
-                $scope.changeVerification(true);
+                $scope.changeVerification(true, authData.uid);
 
 
 
             })
             .catch(function(error) {
                 //error handling (called on the promise)
-                $scope.changeVerification(false);
+                $scope.changeVerification(false, null);
                 console.log(error);
             })
     };
@@ -155,7 +160,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     //Make LogOut function available to views
     $scope.logOut = function() {
         Auth.$unauth(); //"unauthorize" to log out
-            $scope.changeVerification(false);
+            $scope.changeVerification(false, null);
             $location.path('/');
         };
 
@@ -163,10 +168,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     Auth.$onAuth(function(authData) {
         if (authData) { //if we are authorized
             $scope.userId = authData.uid;
-                $scope.changeVerification(true);
+                $scope.changeVerification(true, authData.uid);
             } else {
             $scope.userId = undefined;
-                $scope.changeVerification(false);
+                $scope.changeVerification(false, null);
             }
     });
 
@@ -174,7 +179,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var authData = Auth.$getAuth(); //get if we're authorized
     if (authData) {
         $scope.userId = authData.uid;
-        $scope.changeVerification(true);
+        $scope.changeVerification(true, authData.uid);
     }
 
     //separate signIn function
@@ -343,7 +348,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
-//////////////////////
 .controller('reviewCtrl', ['$scope', '$uibModal', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $uibModal, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
 
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -358,6 +362,16 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
     console.log($stateParams.institution);
     $scope.userVerified = $scope.isVerified();
+    $scope.ID = $scope.getUserID();
+
+    $scope.editReview = function(review) {
+        $scope.reviewEdit = review;
+        var modalInstance = $uibModal.open({
+            templateUrl: 'partials/edit-review-modal.html',
+            controller: 'editReviewModal',
+            scope:$scope
+        })
+    }
 
     $scope.addReview = function(){
         var modalInstance = $uibModal.open({
@@ -366,7 +380,55 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             scope:$scope
         })
     }
+}])
+
+
+.controller('editReviewModal', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance){
+    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var reviews = $firebaseArray(ref.child('reviews'));
+    var review = reviews.$getRecord($scope.reviewEdit);
+    console.log($scope.reviewEdit);
+
+    $scope.PROF = $scope.reviewEdit.prof;
+    $scope.RATE = $scope.reviewEdit.star;
+    $scope.QUARTER = $scope.reviewEdit.quarter;
+    $scope.helpfulness = $scope.reviewEdit.helpfulness;
+    $scope.workload = $scope.reviewEdit.workload;
+    $scope.gpa = $scope.reviewEdit.gpa;
+    $scope.easiness = $scope.reviewEdit.easiness;
+    $scope.newReview = $scope.reviewEdit.text;
+
+    $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    $scope.workloads = ['1-Not Much Work', '2-Little Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
+    $scope.helpfulnesses = ['1-Not Useful', '2-Somewhat Useful', '3-Basic Skills', '4-Worth Learning', '5-Gain Really Helpful Skills'];
+    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    $scope.rate = 0;
     $scope.max = 5;
+
+    $scope.modifyReview = function(reviewToEdit) {
+        console.log(reviewToEdit);
+        reviewToEdit.$save({
+                star: $scope.RATE,
+                prof: $scope.PROF,
+                text: $scope.newReview,
+                gpa: $scope.gpa,
+                workload: $scope.workload,
+                helpfulness: $scope.helpfulness,
+                easiness: $scope.easiness,
+                time: Firebase.ServerValue.TIMESTAMP,
+                quarter: $scope.QUARTER,
+                user: $scope.ID
+            })
+            .then(function() {
+                $scope.newReview = '';
+            })
+        $uibModalInstance.dismiss('closing');
+    }
+
+
+
+
+
     angular.extend($scope, {
                 osloCenter: {
                     lat: $stateParams.institution.LATITUDE,
@@ -395,7 +457,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
 
-$scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
+    $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
     $scope.gpa = '';
     $scope.workloads = ['1-Not Much Work', '2-Little Work', '3-Ok Work', '4-Lot Of Work', '5-Super Heavy Work'];
     $scope.workload = '';
@@ -405,8 +467,6 @@ $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
     $scope.easiness = '';
     $scope.rate = 0;
     $scope.max = 5;
-
-    console.log("create review school name: " + $scope.SchoolName);
 
     $scope.submitReview = function() {
         $scope.reviews.$add({
@@ -420,7 +480,8 @@ $scope.gpas = ['2.0 and lower', '2.0-3.0', '3.0-3.5', '3.5 and higher'];
                 helpfulness: $scope.helpfulness,
                 easiness: $scope.easiness,
                 time: Firebase.ServerValue.TIMESTAMP,
-                quarter: $scope.quarter
+                quarter: $scope.quarter,
+                user: $scope.ID
             })
             .then(function() {
                 $scope.newReview = '';
