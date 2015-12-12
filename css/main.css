@@ -92,7 +92,7 @@ footer li {
 .recReviewed {
     font-size: 20px;
     text-align: center;
-    color: white;
+   /* color: white;*/
     font-family: "Lucida Console", Monaco, monospace;
 }
 /* Styles */
@@ -367,5 +367,16 @@ i {
     color: blue;
 }
 
+#resetPassword{
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 250px;
+}
+#resetPasswordBox{
+    width: 100%;
+}
+#reset {
+text-align:center;
+}
 
 /*search */
