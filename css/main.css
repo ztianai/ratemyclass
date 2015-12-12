@@ -367,5 +367,11 @@ i {
     color: blue;
 }
 
-
+#resetPassword{
+    padding-left: 15px;
+    padding-right: 15px;
+}
+#resetPasswordBox{
+    width: 100%;
+}
 /*search */
