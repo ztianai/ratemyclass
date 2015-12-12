@@ -387,6 +387,15 @@ text-align:center;
     float: right;
 }
 
+.searchIcon{
+
+    color: black;
+}
+
+#search{
+    width: 50%;
+}
+
  @media screen and (max-width:768px){
      ul{
          margin-left: -40px;
