@@ -102,7 +102,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         Auth.$createUser({
                 'email': email,
                 'password': password
-            }).then($scope.signIn(email, password))
+            })
             .then(function(authData) {
 
                 console.log("loading!");
@@ -120,15 +120,13 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
                 $scope.changeVerification(true, authData.uid);
 
-
-
             })
             .catch(function(error) {
                 //error handling (called on the promise)
                 $scope.changeVerification(false, null);
                 $scope.errorMessage = error;
                 console.log(error);
-            })
+            }).then($scope.signIn(email, password))
     };
 
     $scope.changePassword = function() {
@@ -423,14 +421,14 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.review.school = $scope.reviewEdit.school;
         $scope.review.className = $scope.reviewEdit.className;
         $scope.review.star = $scope.RATE;
-        $scope.review.prof = $scope.PROF;
+        $scope.review.prof = $scope.prof;
         $scope.review.text = $scope.newReview,
         $scope.review.gpa = $scope.gpa;
         $scope.review.workload = $scope.workload;
         $scope.review.helpfulness = $scope.helpfulness;
         $scope.review.easiness = $scope.easiness;
         $scope.review.time = Firebase.ServerValue.TIMESTAMP;
-        $scope.review.quarter = $scope.QUARTER;
+        $scope.review.quarter = $scope.quarter;
         $scope.review.user = $scope.ID;
 
         $scope.reviewsToEdit.$save($scope.review)
