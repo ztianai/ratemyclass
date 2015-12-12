@@ -22,8 +22,8 @@
         <label>Select University:</label>
 		<input type="text" ng-model="selectedSchool" uib-typeahead="college as college.INSTNM for college in colleges | filter:$viewValue | limitTo:8" placeholder="Select your University" class="form-control">
 
-        <!-- <label for="classDescr">Class Description:</label>
-        <input id="classDescr" class="form-control" ng-minlength="50" required ng-model="addClassForm.classDescr"> -->
+        <label for="classDescr">Class Description:</label>
+        <input id="classDescr" class="form-control" ng-minlength="50" required ng-model="addClassForm.classDescr">
 
         <label for="professor">Professor (optional):</label>
         <input id="professor" class="form-control" ng-model="addClassForm.professor">

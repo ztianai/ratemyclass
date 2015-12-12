@@ -36,7 +36,7 @@
             ng-disabled="signinForm.email.$invalid || signinForm.password.$invalid">Sign-in
     </button>
     <br>
-    <a href="">Forgot your password?</a>
+    <a ng-click="resetPassword()">Forgot your password?</a>
 
     <p>{{errorMessage}}</p>
 </form>
