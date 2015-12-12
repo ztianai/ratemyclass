@@ -165,9 +165,10 @@ html, body {
 
 footer {
     position: absolute;
+    padding-top: 5px;
     bottom: 0;
     width: 100%;
-    height: 80px;
+    height: 40px;
     background-color: #004C70
 
 }
@@ -409,6 +410,15 @@ text-align:center;
  
      min-height: 15em;
  
- 
+     }
+     li{
+        
+        display: block;
+        
+        
+     }
+     footer{
+        padding-top: 10px;
+        height: 80px;
      }
  }
