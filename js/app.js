@@ -263,15 +263,31 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
-.controller('mapCtrl', ['$scope', function($scope) {
+.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
 
-    angular.extend($scope, {
-        usa: {
-            lat: 41,
-            lng: -100,
-            zoom: 4
-        }
-    });
+    // $scope.markers = [];
+
+    // $http.get("../src/collegeData.json").then(function(response) {
+    //     var colleges = response.data;
+    //     for(var i = 0; i < colleges.length; i++) {
+
+    //     }
+    // });
+
+    // angular.extend($scope, {
+    //     usa: {
+    //         lat: 41,
+    //         lng: -100,
+    //         zoom: 4
+    //     }, markers: {
+    //         osloMarker: {
+    //             lat: Institution.LATITUDE,
+    //             lng: Institution.LONGITUD,
+    //             focus: true,
+    //             draggable: false
+    //         }
+    //     }
+    // });
 }])
 
 .controller('contactCtrl', ['$scope', function($scope) {
@@ -321,7 +337,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             icon: "fa " + $scope.selected,
             name: className,
             institution: $scope.selectedSchool,
-            professor: $scope.addClassForm.professor,
             timestamp: Firebase.ServerValue.TIMESTAMP,
             desc: $scope.addClassForm.desc
         }).then(function() {
