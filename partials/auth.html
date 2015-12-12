@@ -2,12 +2,15 @@
 
     <h2>Sign In</h2>
 
-        <div class="form-group">
-        <label for="email">Handle:</label>
-        <input type="newEmail" id="email" name="email" class="form-control" ng-model="newUser.handle" required>
-        <!-- Show an error message if the email is not valid -->
-<!--         <p class="help-block" ng-if="signupForm.email.$invalid || signupForm.email.$touched">Not an email!</p>
- -->    </div>
+    <div class="form-group">
+        <label for="handle">Handle:</label>
+        <input type="text" id="handle" name="handle" class="form-control" ng-model="newUser.handle" required>
+
+        <p ng-show="signinForm.handle.$invalid && signinForm.handle.$touched" class="help-block enterHandle">
+            Handle is required when you sign up
+        </p>
+
+    </div>
 
 
     <!-- Bind model "email" to this input and make the help-block show up if bad format -->
@@ -25,8 +28,13 @@
         <input id="pw" name="password" type="password" class="form-control" required ng-model="newUser.password">
     </div>
 
-    <button type="submit" class="btn btn-primary" ng-click="signUp()" ng-disabled="signupForm.$invalid" >Sign-up</button>
-    <button type="submit" class="btn btn-primary" ng-click="signIn()" ng-disabled="signinForm.email.$invalid || signinForm.password.$invalid">Sign-in</button>
+    <button type="submit" class="btn btn-primary" ng-click="signUp()"
+            ng-disabled="signinForm.$invalid">Sign-up</button>
+
+
+    <button type="submit" class="btn btn-primary" ng-click="signIn()"
+            ng-disabled="signinForm.email.$invalid || signinForm.password.$invalid">Sign-in
+    </button>
     <br>
     <a href="">Forgot your password?</a>
 
