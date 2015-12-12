@@ -193,6 +193,23 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('changePasswordCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
+      //default values
+     $scope.showPasswordsDoNotMatch = false;
+
+
+    $scope.checkPass = function() {
+            //Store the password field objects into variables
+             //Joe, after scope, is it 'User', right?...
+            var oldPass = $scope.user.oldPass;
+            var newPass = $scope.user.newPass;
+            //Compare the values in the password field
+            if(oldPass === newPass) {
+                $scope.showPasswordsDoNotMatch = false;
+            } else {
+                $scope.showPasswordsDoNotMatch = true;
+            }
+    }
+
     $scope.changePass = function() {
         ref.changePassword({
           email: $scope.email,
