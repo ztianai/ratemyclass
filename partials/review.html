@@ -61,7 +61,7 @@
                     <span class="details">Average GPA: {{review.gpa}}</span><br>
                 </div>
                 <div class="col-sm-6" name="comment">{{review.text}}</div>
-                <i class="fa fa-cog" ng-show="review.user == ID" ng-click="editReview(review)"></i>
+                <i class="fa fa-cog" id="editReviewButton" ng-show="review.user == ID" ng-click="editReview(review)"></i>
 
             </div>
     </div>

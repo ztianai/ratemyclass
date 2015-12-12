@@ -77,12 +77,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.getUserID = function() {
         return $scope.userID;
     }
-
-
 }])
 
-
-//////////
 .controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $location, $uibModal) {
 
     /* define reference to your firebase app */
@@ -91,8 +87,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     /* define reference to the "users" value in the app */
     var users = ref.child('users');
 
-    /* create a $firebaseArray for the chirps reference and add to scope */
-    // $scope.chirpsArray = $firebaseArray(chirps);
 
     /* create a $firebaseObject for the users reference and add to scope (as $scope.users) */
     $scope.users = $firebaseObject(users);
@@ -101,18 +95,17 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.userObj = {};
 
 
-    $scope.signUp = function() {
+    $scope.signUp = function(handle, email, password) {
         console.log("creating user " + $scope.newUser.email);
 
         //pass in an object with the new 'email' and 'password'
         Auth.$createUser({
-                'email': $scope.newUser.email,
-                'password': $scope.newUser.password
-            }).then($scope.signIn)
+                'email': email,
+                'password': password
+            }).then($scope.signIn(email, password))
             .then(function(authData) {
-                // if (userObj.avatar === undefined) {
-                //     userObj.avatar = "img/no-pic.png"
-                // }
+
+                console.log("loading!");
 
                 var newUserInfo = {
                     'handle': $scope.newUser.handle //,
@@ -133,6 +126,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             .catch(function(error) {
                 //error handling (called on the promise)
                 $scope.changeVerification(false, null);
+                $scope.errorMessage = error;
                 console.log(error);
             })
     };
@@ -181,10 +175,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 
     //separate signIn function
-    $scope.signIn = function() {
+    $scope.signIn = function(email, password) {
         var promise = Auth.$authWithPassword({
-            'email': $scope.newUser.email,
-            'password': $scope.newUser.password
+            'email': email,
+            'password': password
         }).then(function() {
             $scope.uibModalInstance.dismiss();
         });
@@ -374,17 +368,16 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             scope: $scope
         })
     }
-    $scope.max = 5;
     angular.extend($scope, {
                osloCenter: {
-                    lat: $stateParams.institution.LATITUDE,
-                    lng: $stateParams.institution.LONGITUD,
+                    lat: $scope.Institution.LATITUDE,
+                    lng: $scope.Institution.LONGITUD,
                     zoom: 14
                 },
                 markers: {
                     osloMarker: {
-                        lat: $stateParams.institution.LATITUDE,
-                       lng: $stateParams.institution.LONGITUD,
+                        lat: $scope.Institution.LATITUDE,
+                       lng: $scope.Institution.LONGITUD,
                        focus: true,
                         draggable: false
                    }
