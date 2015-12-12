@@ -381,6 +381,21 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         })
     }
     $scope.max = 5;
+    angular.extend($scope, {
+               osloCenter: {
+                    lat: $stateParams.institution.LATITUDE,
+                    lng: $stateParams.institution.LONGITUD,
+                    zoom: 14
+                },
+                markers: {
+                    osloMarker: {
+                        lat: $stateParams.institution.LATITUDE,
+                       lng: $stateParams.institution.LONGITUD,
+                       focus: true,
+                        draggable: false
+                   }
+                }
+            });
 
 }])
 
