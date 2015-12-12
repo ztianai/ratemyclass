@@ -438,7 +438,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             })
         $uibModalInstance.dismiss('closing');
     }
-
+    $scope.max = 5;
     angular.extend($scope, {
         osloCenter: {
             lat: $stateParams.institution.LATITUDE,
