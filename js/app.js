@@ -2,7 +2,7 @@
 
 angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstrap', 'ngSanitize', 'leaflet-directive'])
 
-
+//Provides functionality for ui-router and different states. 
 .config(function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
@@ -45,6 +45,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 })
 
+//This is the overall controller for our website.  It primarly handles authentication across 
+//every page on the website 
 .controller('MASTERCTRL', ['$http', '$scope', '$uibModal', function($http, $scope, $uibModal) {
 
     $scope.authInit = function() {
@@ -71,6 +73,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This is the authentication controller.  It handles creating new user accounts, signing in existing users, as well as 
+//resetting passwords.  
 .controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $location, $uibModal) {
 
     /* define reference to your firebase app */
@@ -173,6 +177,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This controller controls the modal that helps the user change his or her password. 
 .controller('changePasswordCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
@@ -217,6 +222,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This controller controls the modal that helps the user reset his or her password.  
 .controller('resetPasswordCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
@@ -240,21 +246,26 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This is the controller that controls the home page.  It displays recently added classes. 
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); 
     $scope.classList = $firebaseArray(ref);
 }])
 
+//This is the controller that controls the search page.  It pulls data from our firebase
+//database and allows filtering. 
 .controller('searchCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/");
     $scope.classList = $firebaseArray(ref);
 }])
 
+//This is the controller that controls the about page.  
 .controller('aboutCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
-
+//This is the controller that controls the Contact page.  It resets the form after
+//the form has been "submitted"
 .controller('contactCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 
@@ -270,6 +281,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This is the add class controller.  It allows you to add a class for other users to see and review. 
 .controller('addclassCtrl', ['$http', '$scope', '$firebaseArray', '$location', function($http, $scope, $firebaseArray, $location) {
     $scope.selected = undefined;
 
@@ -311,6 +323,9 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     }
 }])
 
+//This is the review controller.  It is the controller for each individual class.  
+//It displays reviews relevant to that class at a specific shcool, and allows users 
+//to add reviews of that class.  
 .controller('reviewCtrl', ['$scope', '$uibModal', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $uibModal, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
 
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
@@ -389,10 +404,10 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         });
         $scope.$digest();
     }
-
 }])
 
-
+//This is the edit review modal controller.  It allows a user to edit their own review, modifying all of the available fields. 
+//Note: a user can only edit the reviews they wrote. 
 .controller('editReviewModal', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/reviews/");
     $scope.reviewsToEdit = $firebaseArray(ref);
@@ -447,6 +462,8 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('helpCtrl', ['$scope', function($scope) {
 }])
 
+//This is the controller for adding a new review.  It accepts various 
+//characteristics of the class and saves it to firebase.  
 .controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
     var reviews = ref.child('reviews');

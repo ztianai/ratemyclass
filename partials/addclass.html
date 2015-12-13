@@ -30,7 +30,7 @@
 
             <p class="help-block" ng-show="addClassForm.classDescr.$error.minlength">Minimum length of 50 characters!</p>
             <div class="button1">
-                <button type="submit" class="btn btn-primary" ng-click="addClass()" ng-disabled="addClassForm.$invalid">
+                <button type="submit" class="btn btn-primary" ng-click="addClass()" ng-disabled="addClassForm.$invalid || selected == undefined">
                     Add
                     Class
                 </button>
