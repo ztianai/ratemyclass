@@ -36,11 +36,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
             templateUrl: "partials/help.html",
             controller: 'helpCtrl'
         })
-        .state('map', {
-            url: "/map",
-            templateUrl: "partials/map.html",
-            controller: 'mapCtrl'
-        })
         .state('review', {
             url: "/{school}/{name}/{id}",
             templateUrl: "partials/review.html",
@@ -259,31 +254,6 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
 }])
 
-.controller('mapCtrl', ['$scope', '$http', function($scope, $http) {
-
-    $scope.markers = [];
-
-    $http.get("../src/collegeData.json").then(function(response) {
-        var colleges = response.data;
-        // console.log(response.data);
-        for (var i = 0; i < colleges.length; i++) {
-            $scope.markers.push({
-                lat: colleges[i].LATITUDE,
-                lng: colleges[i].LONGITUD
-            });
-        }
-
-        angular.extend($scope, {
-            usa: {
-                lat: 41,
-                lng: -100,
-                zoom: 7
-            },
-            markers: $scope.markers
-        });
-
-    });
-}])
 
 .controller('contactCtrl', ['$scope', function($scope) {
     var ref = new Firebase("https://ratemyclass.firebaseio.com/");
