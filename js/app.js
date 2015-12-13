@@ -458,7 +458,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
     $scope.workload = '';
     $scope.helpfulnesses = ['1-Not Useful', '2-Somewhat Useful', '3-Basic Skills', '4-Worth Learning', '5-Gain Really Helpful Skills'];
     $scope.helpfulness = '';
-    $scope.easinesses = ['1-Very Hard', '2-Makes You Work For It', '3-Usual Workload', '4-Easy "A"', '5-Show Up & Pass'];
+    $scope.easinesses = ['1-Show Up & Pass', '2-Easy "A"', '3-Usual Workload', '4-Makes You Work For It', '5-Very Hard'];
     $scope.easiness = '';
     $scope.rate = 0;
     $scope.max = 5;
