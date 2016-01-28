@@ -78,7 +78,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 .controller('authCtrl', ['$scope', '$firebaseObject', '$firebaseAuth', '$location', '$uibModal', function($scope, $firebaseObject, $firebaseAuth, $location, $uibModal) {
 
     /* define reference to your firebase app */
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
 
     /* define reference to the "users" value in the app */
     var users = ref.child('users');
@@ -179,7 +179,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 //This controller controls the modal that helps the user change his or her password. 
 .controller('changePasswordCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
 
     //default values
     $scope.showPasswordsDoNotMatch = false;
@@ -224,7 +224,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 //This controller controls the modal that helps the user reset his or her password.  
 .controller('resetPasswordCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
 
     $scope.resetPass = function() {
         ref.resetPassword({
@@ -248,26 +248,26 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 
 //This is the controller that controls the home page.  It displays recently added classes. 
 .controller('homeCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/"); 
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com/classes/"); 
     $scope.classList = $firebaseArray(ref);
 }])
 
 //This is the controller that controls the search page.  It pulls data from our firebase
 //database and allows filtering. 
 .controller('searchCtrl', ['$scope', '$firebaseArray', function($scope, $firebaseArray) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/classes/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com/classes/");
     $scope.classList = $firebaseArray(ref);
 }])
 
 //This is the controller that controls the about page.  
 .controller('aboutCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
 }])
 
 //This is the controller that controls the Contact page.  It resets the form after
 //the form has been "submitted"
 .controller('contactCtrl', ['$scope', function($scope) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
 
     $scope.submitForm = function() {
         $scope.submitted = true;
@@ -302,7 +302,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
         $scope.colleges = response.data;
     });
 
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
     var classes = ref.child('classes');
     $scope.classList = $firebaseArray(classes);
 
@@ -328,7 +328,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 //to add reviews of that class.  
 .controller('reviewCtrl', ['$scope', '$uibModal', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', function($scope, $uibModal, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams) {
 
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
     var reviewRef = ref.child('reviews');
     var classRef = ref.child('classes');
     $scope.reviews = $firebaseArray(reviewRef);
@@ -409,7 +409,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 //This is the edit review modal controller.  It allows a user to edit their own review, modifying all of the available fields. 
 //Note: a user can only edit the reviews they wrote. 
 .controller('editReviewModal', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/reviews/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com/reviews/");
     $scope.reviewsToEdit = $firebaseArray(ref);
     var key = $scope.reviewEdit.$id;
 
@@ -465,7 +465,7 @@ angular.module('rateMyClass', ['ui.router', 'firebase', 'ngAnimate', 'ui.bootstr
 //This is the controller for adding a new review.  It accepts various 
 //characteristics of the class and saves it to firebase.  
 .controller('ReviewModalCtrl', ['$scope', '$firebaseObject', '$firebaseArray', '$firebaseAuth', '$stateParams', '$http', '$uibModalInstance', function($scope, $firebaseObject, $firebaseArray, $firebaseAuth, $stateParams, $http, $uibModalInstance) {
-    var ref = new Firebase("https://ratemyclass.firebaseio.com/");
+    var ref = new Firebase("https://ratemyclasstianai.firebaseio.com");
     var reviews = ref.child('reviews');
     $scope.reviews = $firebaseArray(reviews);
 
